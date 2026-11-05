@@ -49,7 +49,7 @@ Next.js 16.4 (App Router), React 19.3, TypeScript, Tailwind CSS v4, shadcn/ui, Z
   - Both use `generateStaticParams` with `dynamicParams = false`.
   - `proxy.ts` rewrites `/<concern>?h=<ad group>` (and Meta traffic, when a page sets `hideResultsForMeta`) to the matching variant. The visitor's URL is unchanged, and the matched headline is static HTML, not a client-side swap.
   - **Treatment subdomains**: a concern with `subdomain` (plus `clinic.domain`) is served at the root of `<subdomain>.<domain>`, with the address bar unchanged. `/<slug>` on its own subdomain redirects to `/`, and another treatment's path redirects to that treatment's subdomain. Each subdomain needs a DNS record pointing at Vercel and the domain added to the Vercel project.
-  - On any other host, the proxy redirects `/` to the first concern.
+  - On any other host, `/` is `app/page.tsx`: an index of every concern page, each opening in a new tab (not an ad landing page; noindex).
 - **SEO** (`lib/seo.ts`):
   - It sets the canonical URL (the subdomain root), Open Graph and Twitter cards, and one JSON-LD graph per page: MedicalClinic, MedicalWebPage with MedicalProcedure, VideoObject and FAQPage.
   - A page is indexed only when it has `meta.index` and a subdomain, and the deployment sets `SITE_INDEXING=1`. Variants never are.

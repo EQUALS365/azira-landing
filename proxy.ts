@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server"
 
-import { getConcern, getVariant, site, type ConcernPage } from "@/content"
+import { getConcern, getVariant, type ConcernPage } from "@/content"
 import { pageForHost, subdomainHost } from "@/lib/seo"
 import { isMetaTraffic, readAdGroup } from "@/lib/tracking"
 
@@ -26,10 +26,8 @@ export function proxy(request: NextRequest) {
       return NextResponse.redirect(url, 308)
     }
   } else if (pathname === "/") {
-    // Ads link straight to a concern; the root forwards to the first one
-    const url = request.nextUrl.clone()
-    url.pathname = `/${site.concerns[0].slug}`
-    return NextResponse.redirect(url)
+    // Elsewhere the root is the index of treatment pages (app/page.tsx)
+    return NextResponse.next()
   }
 
   const page = getConcern(pathname.slice(1))
