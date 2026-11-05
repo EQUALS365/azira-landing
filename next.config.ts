@@ -6,6 +6,9 @@ const palettePreview = process.env.NEXT_PUBLIC_PALETTE_PREVIEW === "1"
 
 // The root redirect and ?h= headline variants are handled in proxy.ts
 const nextConfig: NextConfig = {
+  experimental: {
+    agentUpgrade: "security",
+  },
   turbopack: {
     resolveAlias: {
       "@palette/panel": palettePreview
