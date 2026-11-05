@@ -61,12 +61,14 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Panel
       data-slot="accordion-content"
-      className="overflow-hidden text-base data-open:animate-accordion-down data-closed:animate-accordion-up"
+      // Base UI measures the answer into --accordion-panel-height; the height
+      // and a soft fade ease open, and close a little faster
+      className="h-(--accordion-panel-height) overflow-hidden text-base transition-[height,opacity] duration-500 ease-gallery data-ending-style:h-0 data-ending-style:opacity-0 data-ending-style:duration-300 data-starting-style:h-0 data-starting-style:opacity-0 motion-reduce:transition-none"
       {...props}
     >
       <div
         className={cn(
-          "h-(--accordion-panel-height) max-w-[65ch] pt-0 pb-6 leading-relaxed text-copy data-ending-style:h-0 data-starting-style:h-0 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
+          "max-w-[65ch] pt-0 pb-6 leading-relaxed text-copy [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
           className
         )}
       >

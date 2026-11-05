@@ -52,6 +52,7 @@ export function Results({ heading, items }: ResultsProps) {
                   <PhotoPair item={item} label={item.treatmentName} />
                 ) : (
                   <Plate
+                    reveal
                     tone="light"
                     sizes="(min-width: 768px) 30vw, 82vw"
                     className="aspect-[4/3]"

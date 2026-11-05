@@ -2,84 +2,115 @@ import type { Metadata } from "next"
 import { ArrowUpRightIcon } from "lucide-react"
 
 import { Logo } from "@/components/logo"
+import { MotionProvider, Stagger, StaggerItem } from "@/components/motion"
+import { Plate, WallLabel } from "@/components/plate"
 import { buttonVariants } from "@/components/ui/button"
 import { site } from "@/content"
 import { subdomainHost } from "@/lib/seo"
-import { cn } from "@/lib/utils"
 
 export const metadata: Metadata = {
   title: `Treatment pages | ${site.clinic.name}`,
   robots: { index: false, follow: false },
 }
 
+const nudge =
+  "transition-transform duration-300 ease-gallery group-hover/button:translate-x-0.5 group-hover/button:-translate-y-0.5 motion-reduce:transition-none"
+
 /**
  * The root of the main deployment (not an ad landing page): every concern
- * page, each opening in a new tab. Treatment subdomains never show this;
- * their root is their own page (see proxy.ts).
+ * page hung as a plate, each opening in a new tab. Treatment subdomains never
+ * show this; their root is their own page (see proxy.ts).
  */
 export default function TreatmentIndex() {
   return (
-    <main className="min-h-dvh bg-background">
-      <div className="shell py-12 lg:py-20">
-        <Logo logo={site.brand.logo} />
-        <h1 className="mt-12 text-[2.25rem] leading-[1.1] sm:text-5xl">
-          Treatment pages
-        </h1>
-        <p className="mt-4 max-w-[52ch] text-[1.0625rem] leading-relaxed text-copy">
-          Each page is built for one advert and opens in a new tab. Pages with a
-          subdomain will also answer at their own address once its DNS record is
-          live.
-        </p>
+    <MotionProvider>
+      <header className="border-b border-copy">
+        <div className="shell flex h-16 items-center">
+          <Logo logo={site.brand.logo} />
+        </div>
+      </header>
+      <main className="bg-background">
+        <div className="shell py-14 lg:py-24">
+          <div className="grid gap-5 lg:grid-cols-12 lg:items-end lg:gap-8">
+            <h1 className="text-[2.5rem] leading-[1.08] sm:text-6xl lg:col-span-6 lg:text-7xl">
+              Treatment pages
+            </h1>
+            <p className="max-w-[48ch] text-[1.0625rem] leading-relaxed lg:col-span-5 lg:col-start-8">
+              One page for each advert, in {site.clinic.name}&apos;s own
+              photography. Each opens in a new tab, and pages with a subdomain
+              also answer at their own address once its DNS record is live.
+            </p>
+          </div>
 
-        <ul className="mt-12 border-t border-copy">
-          {site.concerns.map((page) => {
-            const host = subdomainHost(page)
-            return (
-              <li
-                key={page.slug}
-                className="grid gap-4 border-b border-hairline py-6 md:grid-cols-12 md:items-center md:gap-8"
-              >
-                <div className="md:col-span-7">
-                  <h2 className="text-2xl leading-tight">{page.concern}</h2>
-                  <p className="mt-2 max-w-[60ch] text-sm leading-relaxed text-copy">
-                    {page.hero.defaultHeadline}
-                  </p>
-                  <p className="caption mt-3 text-mark-ink">
-                    {host ?? "No subdomain"}
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-2.5 md:col-span-5 md:justify-end">
-                  <a
-                    href={`/${page.slug}`}
-                    target="_blank"
-                    rel="noopener"
-                    className={cn(buttonVariants({ size: "cta" }), "gap-2")}
-                  >
-                    Open page
-                    <ArrowUpRightIcon aria-hidden />
-                    <span className="sr-only">(opens in a new tab)</span>
-                  </a>
-                  {host && (
+          <Stagger
+            as="ul"
+            gap={0.09}
+            className="mt-12 grid gap-x-8 gap-y-16 border-t border-copy pt-10 md:grid-cols-2 lg:mt-16 lg:pt-12 xl:grid-cols-3"
+          >
+            {site.concerns.map((page) => {
+              const host = subdomainHost(page)
+              return (
+                <StaggerItem as="li" key={page.slug}>
+                  <figure>
                     <a
-                      href={`https://${host}/`}
+                      href={`/${page.slug}`}
                       target="_blank"
                       rel="noopener"
-                      className={cn(
-                        buttonVariants({ size: "cta", variant: "outline" }),
-                        "gap-2"
-                      )}
+                      tabIndex={-1}
+                      aria-hidden
+                      className="block"
                     >
-                      Subdomain
-                      <ArrowUpRightIcon aria-hidden />
+                      <Plate
+                        reveal
+                        zoom
+                        image={page.hero.image}
+                        sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 100vw"
+                        className="aspect-[4/3]"
+                      />
+                    </a>
+                    <WallLabel className="text-mark-ink">
+                      {host ?? "No subdomain · main site only"}
+                    </WallLabel>
+                  </figure>
+                  <h2 className="mt-6 text-[1.75rem] leading-tight sm:text-[2rem]">
+                    {page.concern}
+                  </h2>
+                  <p className="mt-2 max-w-[44ch] leading-relaxed">
+                    {page.hero.defaultHeadline}
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-2.5">
+                    <a
+                      href={`/${page.slug}`}
+                      target="_blank"
+                      rel="noopener"
+                      className={buttonVariants({ size: "cta" })}
+                    >
+                      Open page
+                      <ArrowUpRightIcon aria-hidden className={nudge} />
                       <span className="sr-only">(opens in a new tab)</span>
                     </a>
-                  )}
-                </div>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-    </main>
+                    {host && (
+                      <a
+                        href={`https://${host}/`}
+                        target="_blank"
+                        rel="noopener"
+                        className={buttonVariants({
+                          size: "cta",
+                          variant: "outline",
+                        })}
+                      >
+                        Subdomain
+                        <ArrowUpRightIcon aria-hidden className={nudge} />
+                        <span className="sr-only">(opens in a new tab)</span>
+                      </a>
+                    )}
+                  </div>
+                </StaggerItem>
+              )
+            })}
+          </Stagger>
+        </div>
+      </main>
+    </MotionProvider>
   )
 }

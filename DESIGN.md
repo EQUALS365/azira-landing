@@ -132,7 +132,7 @@ The world was built to avoid the beauty-clinic default of a blush split hero wit
 - Square corners (Azira's radius is 0) on buttons, inputs, plates and panels.
 - Every photograph is a plate with a wall label bound tight beneath it.
 - Champagne gold appears only as hairlines, the award mark and gold text.
-- Motion is quiet: section fade-ups once, a sliding phone action bar, and two form moments.
+- Motion is quiet and gallery-like: photos are hung once as they scroll in, rules draw themselves, a sliding phone action bar, and two form moments.
 
 ## Colors
 
@@ -264,7 +264,18 @@ Trigger rows are at least 64px tall and set in the heading face at 1.125rem. A p
 
 ### Motion
 One easing for everything: exponential ease-out `cubic-bezier(0.16, 1, 0.3, 1)`, through Motion's LazyMotion (domAnimation, loaded after first paint) with `MotionConfig reducedMotion="user"`.
+- **Hanging the plate (signature):** each photograph below the fold is unveiled once from its bottom edge up (`clip-path` inset, 1s) while the print settles from 108% to 100% (1.6s) (`RevealFrame`, through `Plate reveal`). It is used on treatment plates, film posters, clinician portraits, results and the index. It is never used on the hero.
+- **Drawn rules:** the cause axis draws downward in gold and each layer arrives as the line reaches it; the next-steps ledger rules draw in from the left, one step after another (`Stagger`, `DrawnRule`). Stagger is only for lists that are read in order.
+- **Micro-interactions (CSS, pointer devices only):**
+  - Plates settle to 104% while a pointer lingers (1.4s).
+  - Buttons lift 1px and arrows nudge.
+  - The play mark breathes a hairline outward.
+  - The header phone number's underline draws in.
+  - FAQ answers ease open in height and opacity (500ms) and close faster (300ms).
+  
+  Never a shadow.
 - **Section fade-up:** once on scroll, 12px rise, 400ms, triggered at 15% visibility. Never applied to the hero headline, hero image or form. Without JavaScript, sections stay visible.
+- **Reduced motion:** transforms are dropped by MotionConfig, plates show whole (a CSS override, since clip-path keeps animating), and hover movement and the breathing ring are off. Colour and state changes remain.
 - **Mobile action bar:** slides up from below in 300ms and slides away the same way.
 - **Arrival ring:** the 2px ring around the form fades out over 1.2s after a 0.5s delay.
 - **Success swap:** the form exits with an 8px rise in 200ms, then the thank-you enters with an 8px rise in 400ms.

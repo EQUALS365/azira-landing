@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { ImageIcon } from "lucide-react"
 
+import { RevealFrame } from "@/components/motion"
 import type { ImageAsset } from "@/content/schema"
 import { cn } from "@/lib/utils"
 
@@ -22,6 +23,13 @@ type PlateProps = {
    * PlaceholderNote nearby instead)
    */
   placeholder?: "fill" | "behind"
+  /**
+   * Hang the photo as it scrolls into view (the signature reveal). Never on
+   * the hero or anything in the first viewport.
+   */
+  reveal?: boolean
+  /** Let the photo settle closer while a pointer lingers on it */
+  zoom?: boolean
 }
 
 /**
@@ -36,24 +44,35 @@ export function Plate({
   preload = false,
   placeholder = "fill",
   imageClassName,
+  reveal = false,
+  zoom = false,
 }: PlateProps) {
+  const photo = image.src && (
+    <Image
+      src={image.src}
+      alt={image.alt}
+      fill
+      sizes={sizes}
+      preload={preload}
+      className={cn("object-cover", imageClassName)}
+    />
+  )
+
   return (
     <div
       className={cn(
         "relative overflow-hidden",
         tone === "dark" ? "bg-plate" : "bg-plate-light",
+        zoom && "plate-zoom",
         className
       )}
     >
-      {image.src ? (
-        <Image
-          src={image.src}
-          alt={image.alt}
-          fill
-          sizes={sizes}
-          preload={preload}
-          className={cn("object-cover", imageClassName)}
-        />
+      {photo ? (
+        reveal ? (
+          <RevealFrame className="absolute inset-0">{photo}</RevealFrame>
+        ) : (
+          photo
+        )
       ) : placeholder === "behind" ? (
         <div
           role="img"

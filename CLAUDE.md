@@ -72,11 +72,13 @@ Next.js 16.4 (App Router), React 19.3, TypeScript, Tailwind CSS v4, shadcn/ui, Z
 - **Before/after rules are enforced in code**: a real photo result must carry `consentConfirmed: true` or the content won't parse. Results for `prescriptionOnly` treatments are dropped. The block hides when `showResults` is off, or for Meta traffic when `hideResultsForMeta` is on.
 - **Motion** uses `motion/react` with `LazyMotion`, and its features are loaded asynchronously from `components/motion-features.ts`. Import `m` from `motion/react-m`; `strict` mode forbids `motion.*`. Motion is used only for:
   - `FadeUp` section reveals: once, 12px, about 400ms
+  - the "hanging the plate" photo reveal (`Plate reveal` → `RevealFrame`), once, below the fold only
+  - `Stagger`/`StaggerItem`/`DrawnRule` for lists read in order (the cause axis, the next steps, the index)
   - the mobile action bar slide-in
   - the scroll-to-form highlight
   - the form success swap
 
-  Never animate the hero headline, hero image or form on load (LCP). `MotionConfig reducedMotion="user"` respects reduced motion. No Three.js, no parallax, no video backgrounds.
+  Hover micro-interactions are CSS in `app/globals.css` (plate zoom, play mark, underline draw), use the `ease-gallery` curve, and never add shadows. Never animate the hero headline, hero image or form on load (LCP). `MotionConfig reducedMotion="user"` respects reduced motion, and `globals.css` shows revealed plates whole under reduced motion (Motion keeps animating clip-path). No Three.js, no parallax, no video backgrounds.
 - **Draft copy and placeholders**: bracketed values (`[price]`, `[Clinician name]`, `[Consultation fee…]`) are facts the clinic hasn't supplied. Never replace them with invented ones.
 
 ### Adding things

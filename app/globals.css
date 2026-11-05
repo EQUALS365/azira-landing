@@ -56,6 +56,8 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  /* The one easing curve (DESIGN.md → Motion), for CSS transitions too */
+  --ease-gallery: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /*
@@ -190,5 +192,64 @@
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
+  }
+}
+
+/* --- Micro-interactions ------------------------------------------------------
+   Quiet acknowledgements on pointer devices. Each one keeps the flat wall:
+   movement, scale and line only, never a shadow. */
+
+/* Underline that draws in from the left (the header phone number) */
+.underline-draw {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px
+    no-repeat;
+  padding-bottom: 1px;
+  transition: background-size 450ms var(--ease-gallery);
+}
+:where(a, button):hover .underline-draw,
+:where(a, button):focus-visible .underline-draw {
+  background-size: 100% 1px;
+}
+
+/* The film's play mark: a hairline breathes out from it while you linger */
+@keyframes play-breathe {
+  from {
+    outline-offset: 0;
+    outline-color: color-mix(in oklab, var(--room-foreground) 75%, transparent);
+  }
+  to {
+    outline-offset: 14px;
+    outline-color: transparent;
+  }
+}
+.play-mark {
+  outline: 1px solid transparent;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  /* A photograph settles closer while you linger, like stepping up to a print */
+  .plate-zoom img {
+    transition: scale 1400ms var(--ease-gallery);
+  }
+  .plate-zoom:hover img,
+  :where(a, button):hover > .plate-zoom img,
+  :where(a, button):focus-visible > .plate-zoom img {
+    scale: 1.04;
+  }
+  .group:hover .play-mark,
+  .group:focus-visible .play-mark {
+    animation: play-breathe 1.8s var(--ease-gallery) infinite;
+  }
+}
+
+/* --- Reduced motion and no JavaScript -----------------------------------------
+   Motion leaves clip-path animating under reducedMotion="user", so plates are
+   shown whole here; transforms are already dropped by MotionConfig. */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    clip-path: none !important;
+  }
+  [data-reveal] > * {
+    transform: none !important;
   }
 }

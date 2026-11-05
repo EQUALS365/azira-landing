@@ -1,23 +1,37 @@
-import { FadeUp } from "@/components/motion"
+import { DrawnRule, FadeUp, Stagger, StaggerItem } from "@/components/motion"
 import type { ConcernPage } from "@/content/schema"
 
-/** Block 11: four steps from enquiry to decision, ending with no pressure */
+/**
+ * Block 11: four steps from enquiry to decision, ending with no pressure.
+ * The steps arrive in order, each ledger rule drawing in from the left.
+ */
 export function NextSteps({ steps }: { steps: ConcernPage["steps"] }) {
   return (
     <section aria-labelledby="steps-heading" className="bg-muted">
-      <FadeUp className="shell py-20 lg:py-28">
-        <h2
-          id="steps-heading"
-          className="max-w-[18ch] text-[2rem] leading-[1.12] sm:text-[2.5rem] lg:text-5xl"
+      <div className="shell py-20 lg:py-28">
+        <FadeUp>
+          <h2
+            id="steps-heading"
+            className="max-w-[18ch] text-[2rem] leading-[1.12] sm:text-[2.5rem] lg:text-5xl"
+          >
+            {steps.heading}
+          </h2>
+        </FadeUp>
+        <Stagger
+          as="ol"
+          gap={0.12}
+          className="mt-12 grid gap-0 sm:grid-cols-2 sm:gap-x-8 lg:mt-16 lg:grid-cols-4"
         >
-          {steps.heading}
-        </h2>
-        <ol className="mt-12 grid gap-0 sm:grid-cols-2 sm:gap-x-8 lg:mt-16 lg:grid-cols-4">
           {steps.items.map((step, index) => (
-            <li
+            <StaggerItem
+              as="li"
               key={step.title}
-              className="border-t border-copy pt-5 pb-10 sm:pb-12 lg:pb-0"
+              className="relative pt-5 pb-10 sm:pb-12 lg:pb-0"
             >
+              <DrawnRule
+                axis="x"
+                className="absolute inset-x-0 top-0 h-px bg-copy"
+              />
               <span className="figures font-heading text-[2.5rem] leading-none text-foreground">
                 {index + 1}
               </span>
@@ -25,10 +39,10 @@ export function NextSteps({ steps }: { steps: ConcernPage["steps"] }) {
                 {step.title}
               </h3>
               <p className="mt-2 max-w-[32ch] leading-relaxed">{step.body}</p>
-            </li>
+            </StaggerItem>
           ))}
-        </ol>
-      </FadeUp>
+        </Stagger>
+      </div>
     </section>
   )
 }

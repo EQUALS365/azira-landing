@@ -25,6 +25,7 @@ export function Clinician({ clinician }: { clinician: ClinicianContent }) {
             />
           ) : (
             <Plate
+              reveal
               image={clinician.portrait}
               tone="light"
               sizes="(min-width: 768px) 40vw, 100vw"

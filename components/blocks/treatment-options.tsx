@@ -99,6 +99,8 @@ function TreatmentPlate({
     >
       <figure className={cn(split && "md:col-span-6")}>
         <Plate
+          reveal
+          zoom
           image={treatment.image}
           sizes={
             split

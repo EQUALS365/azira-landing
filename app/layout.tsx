@@ -33,9 +33,9 @@ export default function RootLayout({
     >
       <body>
         {children}
-        {/* Without JavaScript, fade-up sections must still be visible */}
+        {/* Without JavaScript, revealed sections and plates must still show */}
         <noscript>
-          <style>{`[data-fade]{opacity:1!important;transform:none!important}`}</style>
+          <style>{`[data-fade]{opacity:1!important;transform:none!important}[data-reveal]{clip-path:none!important}[data-reveal]>*{transform:none!important}`}</style>
         </noscript>
       </body>
     </html>

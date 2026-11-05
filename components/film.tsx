@@ -35,6 +35,7 @@ export function Film({ video, sizes, className, tone = "dark" }: FilmProps) {
   if (!video.src) {
     return (
       <Plate
+        reveal
         image={video.poster}
         sizes={sizes}
         className={className}
@@ -64,6 +65,8 @@ export function Film({ video, sizes, className, tone = "dark" }: FilmProps) {
           className="group absolute inset-0 cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-room-foreground"
         >
           <Plate
+            reveal
+            zoom
             image={video.poster}
             sizes={sizes}
             tone={tone}
@@ -77,7 +80,7 @@ export function Film({ video, sizes, className, tone = "dark" }: FilmProps) {
             aria-hidden
             className="absolute inset-x-4 bottom-4 flex items-center gap-4 text-left text-room-foreground sm:inset-x-6 sm:bottom-6"
           >
-            <span className="flex size-14 shrink-0 items-center justify-center bg-room-foreground text-room transition-transform duration-300 group-hover:scale-105 sm:size-16">
+            <span className="play-mark flex size-14 shrink-0 items-center justify-center bg-room-foreground text-room transition-transform duration-300 group-hover:scale-105 sm:size-16">
               <PlayIcon className="size-5 translate-x-px fill-current stroke-0" />
             </span>
             <span className="flex flex-col gap-1">

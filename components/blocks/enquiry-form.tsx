@@ -537,7 +537,10 @@ export function EnquiryForm({ slug, concern, form, clinic }: EnquiryFormProps) {
                 ) : (
                   <>
                     {form.submitLabel}
-                    <ArrowRightIcon aria-hidden className="stroke-[1.5]" />
+                    <ArrowRightIcon
+                      aria-hidden
+                      className="stroke-[1.5] transition-transform duration-300 ease-gallery group-hover/button:translate-x-1 motion-reduce:transition-none"
+                    />
                   </>
                 )}
               </Button>

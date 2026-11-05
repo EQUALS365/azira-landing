@@ -23,7 +23,7 @@ export function SlimHeader({
           <span className="caption hidden text-copy md:inline">
             Call the clinic
           </span>
-          <span className="figures text-[0.9375rem] tracking-[0.06em] group-hover:underline">
+          <span className="figures underline-draw text-[0.9375rem] tracking-[0.06em]">
             {phone.display}
           </span>
         </a>
