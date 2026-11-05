@@ -57,7 +57,7 @@ export const laserHairRemoval = {
     },
   },
   form: {
-    title: "Tell us about your concern",
+    title: "Tell us which areas you'd like treated",
     intro: "A nurse will call you back to talk it through, with no obligation.",
     concernLabel: "Area to treat",
     concernOptions: [
@@ -97,7 +97,7 @@ export const laserHairRemoval = {
     ],
   },
   treatments: {
-    heading: "Where a plan can lead",
+    heading: "Diolaze laser hair removal at Azira",
     intro:
       // Aylish's own words from her intro video; confirm she's happy for it
       // to be used here
@@ -158,7 +158,7 @@ export const laserHairRemoval = {
   },
   clinicianId: 1,
   results: {
-    heading: "Real results from our clinic",
+    heading: "Laser hair removal results from our clinic",
     items: [
       {
         kind: "placeholder",
@@ -206,7 +206,7 @@ export const laserHairRemoval = {
     ],
   },
   faqs: {
-    heading: "Questions before you book",
+    heading: "Laser hair removal questions, answered",
     items: [
       {
         question: "How many laser hair removal sessions will I need?",

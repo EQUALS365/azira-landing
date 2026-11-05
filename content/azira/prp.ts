@@ -58,7 +58,7 @@ export const prp = {
     },
   },
   form: {
-    title: "Tell us about your concern",
+    title: "Tell us about your hair or skin",
     intro: "A nurse will call you back to talk it through, with no obligation.",
     concernLabel: "What would you like help with?",
     concernOptions: [
@@ -97,7 +97,7 @@ export const prp = {
     ],
   },
   treatments: {
-    heading: "Where a plan can lead",
+    heading: "PRP for hair, PRP for skin",
     intro:
       "We take 18ml of your blood and spin it in a centrifuge for around five minutes, leaving about 8ml of plasma, often called liquid gold. Your plan may use it for your hair, your skin or both, and you'll see exact prices before you decide.",
     film: {
@@ -183,7 +183,7 @@ export const prp = {
   },
   clinicianId: 1,
   results: {
-    heading: "Real results from our clinic",
+    heading: "PRP results from our clinic",
     items: [
       {
         kind: "placeholder",
@@ -230,7 +230,7 @@ export const prp = {
     ],
   },
   faqs: {
-    heading: "Questions before you book",
+    heading: "PRP questions, answered",
     items: [
       {
         question: "How many PRP sessions will I need?",
@@ -270,6 +270,6 @@ export const prp = {
   },
   closing: {
     headline: "Find out if PRP is right for you",
-    body: "Tell us what you've noticed. A nurse will call you back, and you'll know your options before you commit to anything.",
+    body: "Tell us what you've noticed in your hair or skin. A nurse will call you back to check the cause, and you'll know whether PRP suits you before you commit to anything.",
   },
 } satisfies ConcernPageInput

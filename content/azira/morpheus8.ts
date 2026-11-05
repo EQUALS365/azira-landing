@@ -100,7 +100,7 @@ export const morpheus8 = {
     ],
   },
   treatments: {
-    heading: "Where a plan can lead",
+    heading: "Morpheus8 resurfacing at Azira",
     intro:
       "Watch Grace perform a Morpheus8 resurfacing treatment, through to the LED aftercare. Every treatment here is delivered by medical professionals, and you'll see your exact price before you decide.",
     film: {
@@ -161,7 +161,7 @@ export const morpheus8 = {
   },
   clinicianId: 0,
   results: {
-    heading: "Real results from our clinic",
+    heading: "Morpheus8 results from our clinic",
     items: [
       {
         kind: "placeholder",
@@ -208,7 +208,7 @@ export const morpheus8 = {
     ],
   },
   faqs: {
-    heading: "Questions before you book",
+    heading: "Morpheus8 questions, answered",
     items: [
       {
         question: "How many Morpheus8 sessions will I need?",

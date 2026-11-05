@@ -64,7 +64,7 @@ export const rfMicroneedling = {
     },
   },
   form: {
-    title: "Tell us about your concern",
+    title: "Tell us what you'd like to tighten",
     intro: "A nurse will call you back to talk it through, with no obligation.",
     concernLabel: "Area to tighten",
     concernOptions: [
@@ -104,7 +104,7 @@ export const rfMicroneedling = {
     ],
   },
   treatments: {
-    heading: "Where a plan can lead",
+    heading: "Two ways to firm and lift",
     intro:
       'Both treatments run on our InMode Optimas Max, which we chose because it "has given us the best results for our patients here at Azira". Your plan may use one, both, or neither, and you\'ll see exact prices before you decide.',
     film: {
@@ -188,7 +188,7 @@ export const rfMicroneedling = {
   },
   clinicianId: 1,
   results: {
-    heading: "Real results from our clinic",
+    heading: "Skin tightening results from our clinic",
     items: [
       {
         kind: "placeholder",
@@ -235,7 +235,7 @@ export const rfMicroneedling = {
     ],
   },
   faqs: {
-    heading: "Questions before you book",
+    heading: "RF microneedling questions, answered",
     items: [
       {
         question: "What is RF microneedling?",
