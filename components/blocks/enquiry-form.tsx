@@ -121,7 +121,8 @@ function withTracking(data: FormData) {
   }
   const adGroup = readAdGroup(new URLSearchParams(window.location.search))
   if (adGroup) data.set("adGroup", adGroup)
-  data.set("page", window.location.pathname)
+  // Host and path, so leads from each treatment subdomain stay distinct
+  data.set("page", window.location.host + window.location.pathname)
   return data
 }
 
@@ -472,7 +473,7 @@ export function EnquiryForm({ slug, concern, form, clinic }: EnquiryFormProps) {
 
                 <Field data-invalid={!!errors.concern}>
                   <FieldLabel htmlFor={FIELD_IDS.concern}>
-                    Your concern
+                    {form.concernLabel}
                   </FieldLabel>
                   <Select
                     name="concern"

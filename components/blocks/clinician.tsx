@@ -1,4 +1,5 @@
 import { BookButton } from "@/components/cta"
+import { Film } from "@/components/film"
 import { FadeUp } from "@/components/motion"
 import { Plate, WallLabel } from "@/components/plate"
 import type { Clinician as ClinicianContent } from "@/content/schema"
@@ -15,12 +16,21 @@ export function Clinician({ clinician }: { clinician: ClinicianContent }) {
     <section aria-labelledby="clinician-heading" className="bg-muted">
       <FadeUp className="shell grid gap-10 py-20 md:grid-cols-12 md:items-center md:gap-8 lg:py-28">
         <figure className="md:col-span-5">
-          <Plate
-            image={clinician.portrait}
-            tone="light"
-            sizes="(min-width: 768px) 40vw, 100vw"
-            className="aspect-[4/5]"
-          />
+          {clinician.video ? (
+            <Film
+              video={clinician.video}
+              tone="light"
+              sizes="(min-width: 768px) 40vw, 100vw"
+              className="aspect-[4/5]"
+            />
+          ) : (
+            <Plate
+              image={clinician.portrait}
+              tone="light"
+              sizes="(min-width: 768px) 40vw, 100vw"
+              className="aspect-[4/5]"
+            />
+          )}
           <WallLabel className="text-copy">
             {clinician.portrait.caption ??
               `${clinician.name} · ${clinician.role}`}

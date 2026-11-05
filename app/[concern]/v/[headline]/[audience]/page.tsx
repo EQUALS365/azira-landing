@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 
 import { ConcernPage } from "@/components/concern-page"
 import { getConcern, getVariant, site } from "@/content"
+import { pageMetadata } from "@/lib/seo"
 
 // Prebuilt variants of each concern page. Visitors never see this URL:
 // proxy.ts rewrites /<concern>?h=<ad group> here, so the matched headline is
@@ -29,12 +30,8 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = getConcern((await params).concern)
   if (!page) return {}
-  return {
-    title: page.meta.title,
-    description: page.meta.description,
-    robots: { index: false, follow: false },
-    alternates: { canonical: `/${page.slug}` },
-  }
+  // Same page for search: canonical to the default, never indexed
+  return pageMetadata(page, { variant: true })
 }
 
 export default async function ConcernVariantPage({ params }: Props) {

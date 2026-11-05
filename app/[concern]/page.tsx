@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 
 import { ConcernPage } from "@/components/concern-page"
 import { concernSlugs, getConcern } from "@/content"
+import { pageMetadata } from "@/lib/seo"
 
 // Every concern page is prebuilt; unknown slugs 404
 export const dynamicParams = false
@@ -16,13 +17,9 @@ type Props = { params: Promise<{ concern: string }> }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = getConcern((await params).concern)
   if (!page) return {}
-  return {
-    title: page.meta.title,
-    description: page.meta.description,
-    // Paid-traffic page: keep it out of search so it doesn't compete with
-    // the clinic's main site.
-    robots: { index: false, follow: false },
-  }
+  // Indexed only when the page opts in, has its own subdomain and the
+  // deployment sets SITE_INDEXING=1 (see lib/seo.ts)
+  return pageMetadata(page)
 }
 
 /** The default page; ?h= variants are rewritten by proxy.ts to v/[headline]/[audience] */

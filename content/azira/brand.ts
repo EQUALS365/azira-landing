@@ -11,20 +11,20 @@ export const brand = {
     note: "Azira Aesthetics logo: ask the clinic for SVG or a high-res PNG",
   },
   colours: {
+    // "Stone & Espresso", chosen by the clinic from the colour review on
+    // 2026-11-06 (the "cream brown" scheme): warm stone panels, deep espresso
+    // bands and a latte accent.
     surface: "#ffffff",
-    ink: "#050505",
-    text: "#444444",
-    panel: "#f4f4f3",
-    hairline: "#c1c1c1",
-    line: "#444444",
-    room: "#141414",
+    ink: "#1b1714",
+    text: "#4a433d",
+    panel: "#f3f0ec",
+    hairline: "#d8d1c9",
+    line: "#4a433d",
+    room: "#26201c",
     roomInk: "#ffffff",
-    roomText: "#c1c1c1",
-    // Their champagne gold (#AF8F43) is 3.0:1 on white, which fails AA for
-    // text, so it stays decorative on light grounds; accentInk is the same
-    // hue darkened to 5.8:1 for gold text on white.
-    accent: "#af8f43",
-    accentInk: "#7a6330",
+    roomText: "#c8beb4",
+    accent: "#b39a7c",
+    accentInk: "#76603f",
     destructive: "#b3261e",
   },
   // Square corners, like the outlined buttons on their site

@@ -1,4 +1,5 @@
 import { sendLeadEmail } from "./email"
+import { sendLeadToGhl } from "./ghl"
 import type { Lead } from "./lead"
 import { postLeadWebhook } from "./webhook"
 
@@ -7,13 +8,14 @@ export { readHiddenFields, type Lead } from "./lead"
 const DESTINATIONS = {
   email: sendLeadEmail,
   webhook: postLeadWebhook,
+  ghl: sendLeadToGhl,
 } satisfies Record<string, (lead: Lead) => Promise<void>>
 
 type Destination = keyof typeof DESTINATIONS
 
 /**
  * Sends a lead to every destination in LEAD_DESTINATIONS (comma-separated:
- * "email", "webhook", or both). The lead counts as delivered if at least one
+ * "email", "webhook", "ghl"). The lead counts as delivered if at least one
  * destination accepts it; failures are logged by lead ID, never with
  * personal details.
  */

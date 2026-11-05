@@ -23,6 +23,27 @@ export const imageAssetSchema = z.object({
   src: text.optional(),
 })
 
+/**
+ * A video slot: the clinic's own footage, played only when the visitor taps
+ * the poster (never autoplayed, never a background). Leave `src` unset to show
+ * the poster with a marked placeholder until the file is compressed and added.
+ */
+export const videoAssetSchema = z.object({
+  /** Stable slot id; the file goes in public/assets/<clinic>/<id>.mp4 */
+  id: text,
+  /** Short title, shown on the play button and in search results */
+  title: text,
+  /** One sentence on what the video shows, for search engines */
+  description: text,
+  /** Length in whole seconds, shown on the play button */
+  durationSeconds: z.number().int().positive(),
+  /** When the clinic published or supplied it (YYYY-MM-DD) */
+  uploadDate: z.iso.date(),
+  /** Still shown until the visitor presses play */
+  poster: imageAssetSchema,
+  src: text.optional(),
+})
+
 // --- Brand -------------------------------------------------------------------
 
 function luminance(colour: string) {
@@ -133,10 +154,22 @@ export const clinicianSchema = z.object({
   qualification: text,
   role: text,
   years: text,
+  /** Their intro video; replaces the portrait with a tap-to-play film */
+  video: videoAssetSchema.optional(),
 })
 
 export const clinicSchema = z.object({
   name: text,
+  /** The clinic's own website, linked from structured data */
+  website: z.url().optional(),
+  /**
+   * The clinic's domain, e.g. "azira-aesthetics.co.uk". A page with a
+   * `subdomain` is served at the root of <subdomain>.<domain>.
+   */
+  domain: z
+    .string()
+    .regex(/^[a-z0-9-]+(\.[a-z0-9-]+)+$/)
+    .optional(),
   phone: z.object({ display: text, dial: z.string().regex(/^\+\d{8,15}$/) }),
   address: text,
   location: text,
@@ -206,10 +239,27 @@ const pair = z.object({ title: text, body: text })
 export const concernPageSchema = z
   .object({
     slug: z.string().regex(/^[a-z0-9-]+$/),
+    /** What the page is about; labels each lead, e.g. "Morpheus8" */
     concern: text,
+    /**
+     * Serve this page at the root of <subdomain>.<clinic.domain>, e.g.
+     * "morpheus8" for morpheus8.azira-aesthetics.co.uk
+     */
+    subdomain: z
+      .string()
+      .regex(/^[a-z0-9-]+$/)
+      .optional(),
     showResults: z.boolean(),
     hideResultsForMeta: z.boolean(),
-    meta: z.object({ title: text, description: text }),
+    meta: z.object({
+      title: text,
+      description: text,
+      /**
+       * Let search engines index the page. Only takes effect on its own
+       * subdomain in production; preview builds and variants are never indexed.
+       */
+      index: z.boolean().default(false),
+    }),
     hero: z.object({
       defaultHeadline: text,
       intro: text,
@@ -219,7 +269,11 @@ export const concernPageSchema = z
     form: z.object({
       title: text,
       intro: text,
+      /** Label for the choice below, e.g. "Area to treat" */
+      concernLabel: text.default("Your concern"),
       concernOptions: z.array(text).min(2),
+      /** Option chosen when the page loads; defaults to `concern` */
+      defaultOption: text.optional(),
       treatedBeforeOptions: z.array(text).length(3),
       startWhenOptions: z.array(text).length(3),
       submitLabel: text,
@@ -232,6 +286,8 @@ export const concernPageSchema = z
     treatments: z.object({
       heading: text,
       intro: text,
+      /** The clinic's film of the treatment, shown above the options */
+      film: videoAssetSchema.optional(),
       items: z.array(treatmentSchema).min(1).max(2),
     }),
     suitability: z.object({
@@ -249,11 +305,12 @@ export const concernPageSchema = z
   })
   .superRefine((page, ctx) => {
     const options = page.form.concernOptions
-    if (!options.includes(page.concern)) {
+    if (!options.includes(page.form.defaultOption ?? page.concern)) {
       ctx.addIssue({
         code: "custom",
-        path: ["concern"],
-        message: "concern must be one of form.concernOptions",
+        path: page.form.defaultOption ? ["form", "defaultOption"] : ["concern"],
+        message:
+          "form.defaultOption (or concern, when it's unset) must be one of form.concernOptions",
       })
     }
     page.hero.headlines.forEach((variant, index) => {
@@ -286,6 +343,7 @@ export const clinicContentSchema = z.object({
 })
 
 export type ImageAsset = z.infer<typeof imageAssetSchema>
+export type VideoAsset = z.infer<typeof videoAssetSchema>
 export type Brand = z.infer<typeof brandSchema>
 export type BrandColours = z.infer<typeof brandColoursSchema>
 export type Palette = z.infer<typeof paletteSchema>

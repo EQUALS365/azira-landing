@@ -13,6 +13,7 @@ import { TrustStrip } from "@/components/blocks/trust-strip"
 import { WhoItSuits } from "@/components/blocks/who-it-suits"
 import { getVariant, site } from "@/content"
 import type { ConcernPage as ConcernPageContent } from "@/content/schema"
+import { jsonLdScript, pageJsonLd } from "@/lib/seo"
 
 type ConcernPageProps = {
   page: ConcernPageContent
@@ -40,9 +41,14 @@ export function ConcernPage({ page, adGroup, audience }: ConcernPageProps) {
     !(page.hideResultsForMeta && audience === "meta")
 
   const clinician = clinic.clinicians[page.clinicianId]
+  const jsonLd = jsonLdScript(pageJsonLd(page, clinician))
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd }}
+      />
       <main className="pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0">
         <Hero
           headline={variant?.headline ?? page.hero.defaultHeadline}
@@ -55,7 +61,11 @@ export function ConcernPage({ page, adGroup, audience }: ConcernPageProps) {
           form={
             <EnquiryForm
               slug={page.slug}
-              concern={variant?.concernOption ?? page.concern}
+              concern={
+                variant?.concernOption ??
+                page.form.defaultOption ??
+                page.concern
+              }
               form={page.form}
               clinic={{
                 phone: clinic.phone,

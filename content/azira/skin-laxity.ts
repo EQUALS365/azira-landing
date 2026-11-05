@@ -40,9 +40,10 @@ export const skinLaxity = {
     ],
     image: {
       id: "hero-still",
-      alt: "A nurse in black gloves assessing skin along a patient's jawline",
-      note: "Clinic's own treatment shot: gloved hands at the jawline, tight crop",
-      caption: "Assessment in clinic · Newport",
+      alt: "Blue-gloved hands guiding the Morpheus8 handpiece across a patient's face",
+      note: "Clinic's own treatment shot from the Morpheus8 film",
+      caption: "Morpheus8 in clinic · Newport",
+      src: "/assets/azira/hero-still.jpg",
     },
   },
   form: {
@@ -92,10 +93,11 @@ export const skinLaxity = {
         name: "Morpheus8",
         kind: "Radiofrequency microneedling",
         image: {
-          id: "treatment-morpheus8",
-          alt: "A gloved hand holding the Morpheus8 handpiece",
-          note: "Gloved hand with the Morpheus8 handpiece, dark background",
+          id: "treatment-rf-morpheus8",
+          alt: "A hand holding the Morpheus8 handpiece",
+          note: "The Morpheus8 handpiece, from the clinic's InMode film",
           caption: "Morpheus8 handpiece · Treatment room",
+          src: "/assets/azira/treatment-rf-morpheus8.jpg",
         },
         summary:
           "Radiofrequency microneedling that heats the deeper layers of the skin to stimulate new collagen.",
