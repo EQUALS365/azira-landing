@@ -9,7 +9,10 @@ const VERSION = "v3"
 type Env = {
   token: string
   locationId: string
-  pipelineId: string
+  /** Set the id, or leave it out and the pipeline is found by name */
+  pipelineId?: string
+  pipelineName: string
+  /** Defaults to the pipeline's first stage */
   stageId?: string
   /** Flat lead key → GHL contact custom field id, e.g. { "gclid": "abc123" } */
   contactFields: Record<string, string>
@@ -18,10 +21,9 @@ type Env = {
 function readEnv(): Env {
   const token = process.env.GHL_PRIVATE_TOKEN
   const locationId = process.env.GHL_LOCATION_ID
-  const pipelineId = process.env.GHL_PIPELINE_ID
-  if (!token || !locationId || !pipelineId) {
+  if (!token || !locationId) {
     throw new Error(
-      "The ghl destination needs GHL_PRIVATE_TOKEN, GHL_LOCATION_ID and GHL_PIPELINE_ID"
+      "The ghl destination needs GHL_PRIVATE_TOKEN and GHL_LOCATION_ID"
     )
   }
   let contactFields: Record<string, string> = {}
@@ -37,7 +39,8 @@ function readEnv(): Env {
   return {
     token,
     locationId,
-    pipelineId,
+    pipelineId: process.env.GHL_PIPELINE_ID || undefined,
+    pipelineName: process.env.GHL_PIPELINE_NAME || "Ads Pipeline",
     stageId: process.env.GHL_PIPELINE_STAGE_ID || undefined,
     contactFields,
   }
@@ -74,6 +77,58 @@ async function call<T>(
     )
   }
   return (await response.json()) as T
+}
+
+type Pipeline = { pipelineId: string; stageId: string }
+type PipelineList = {
+  pipelines?: {
+    id: string
+    name: string
+    stages?: { id: string; name: string; position?: number }[]
+  }[]
+}
+
+let pipelineCache: Promise<Pipeline> | undefined
+
+/**
+ * The ads pipeline and the stage new leads land in. With both ids set this is
+ * free; otherwise the pipeline is looked up once per instance by id or name
+ * (opportunities.readonly), and new leads go to its first stage.
+ */
+function resolvePipeline(env: Env): Promise<Pipeline> {
+  if (env.pipelineId && env.stageId) {
+    return Promise.resolve({ pipelineId: env.pipelineId, stageId: env.stageId })
+  }
+  pipelineCache ??= (async () => {
+    const query = new URLSearchParams({ locationId: env.locationId })
+    const { pipelines = [] } = await call<PipelineList>(
+      env,
+      "GET",
+      `/opportunities/pipelines?${query}`
+    )
+    const wanted = env.pipelineName.trim().toLowerCase()
+    const pipeline = pipelines.find((p) =>
+      env.pipelineId
+        ? p.id === env.pipelineId
+        : p.name.trim().toLowerCase() === wanted
+    )
+    if (!pipeline) {
+      throw new Error(
+        `No GHL pipeline ${env.pipelineId ? `with id ${env.pipelineId}` : `named "${env.pipelineName}"`}`
+      )
+    }
+    const stages = [...(pipeline.stages ?? [])].sort(
+      (a, b) => (a.position ?? 0) - (b.position ?? 0)
+    )
+    const stageId = env.stageId ?? stages[0]?.id
+    if (!stageId)
+      throw new Error(`GHL pipeline "${pipeline.name}" has no stages`)
+    return { pipelineId: pipeline.id, stageId }
+  })().catch((error) => {
+    pipelineCache = undefined
+    throw error
+  })
+  return pipelineCache
 }
 
 /** UK mobile 07700900123 → +447700900123 */
@@ -135,6 +190,7 @@ function noteBody(flat: FlatLead) {
  */
 export async function sendLeadToGhl(lead: Lead) {
   const env = readEnv()
+  const { pipelineId, stageId } = await resolvePipeline(env)
   const flat = flattenLead(lead)
   const [firstName, ...rest] = flat.name.split(/\s+/)
   const source = adSource(flat)
@@ -169,7 +225,7 @@ export async function sendLeadToGhl(lead: Lead) {
     const query = new URLSearchParams({
       locationId: env.locationId,
       contactId: contact.id,
-      pipelineId: env.pipelineId,
+      pipelineId,
       status: "open",
     })
     const found = await call<{ opportunities?: unknown[] }>(
@@ -188,8 +244,8 @@ export async function sendLeadToGhl(lead: Lead) {
   if (!hasOpen) {
     await call(env, "POST", "/opportunities/", {
       locationId: env.locationId,
-      pipelineId: env.pipelineId,
-      pipelineStageId: env.stageId,
+      pipelineId,
+      pipelineStageId: stageId,
       contactId: contact.id,
       name: `${flat.name} · ${flat.concern_page} · ${source}`,
       status: "open",

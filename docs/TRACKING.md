@@ -60,17 +60,17 @@ To test without emailing anyone real, set `LEAD_EMAIL_TO=delivered@resend.dev`.
 
 1. **Contact upserted.** It is matched on phone or email by the sub-account's duplicate rules, with the phone sent as +44 and the source set to "Ads landing page: <treatment>".
 2. **Tags added:** `ads`, the treatment (e.g. `morpheus8`) and `source-google` or `source-meta`. Tags are added, so a returning contact keeps the tags they already had.
-3. **Opportunity opened** in the ads pipeline at the chosen stage, unless the contact already has an open one there.
+3. **Opportunity opened** in the ads pipeline at its first stage (or the stage set), unless the contact already has an open one there.
 4. **Note added** with every answer and the full tracking: ad group, page, landing page, UTMs, GCLID, fbclid and lead ID.
 
 Setup:
 
-1. **Create the pipeline.** In the sub-account, go to Opportunities → Pipelines and create the ads pipeline (for example "Ads leads": New lead → Contacted → Consultation booked → Treated → Lost).
+1. **Create the pipeline.** In the sub-account, go to Settings → Opportunities & Pipelines → Pipelines and create the ads pipeline. Azira's is "Ads Pipeline": New Lead → Contacted → Consultation Booked → Consultation Attended → Treatment Booked (won and lost are GHL statuses, not stages).
 2. **Create the token.** Go to Settings → Private Integrations → Create New Integration, with the scopes `contacts.write`, `opportunities.write` and `opportunities.readonly`.
 3. **Set the environment variables:**
    - `GHL_PRIVATE_TOKEN` (the token from step 2)
    - `GHL_LOCATION_ID`, which is in the URL: `/v2/location/<id>/…`
-   - `GHL_PIPELINE_ID` and `GHL_PIPELINE_STAGE_ID`, from the pipeline settings or the API
+   - Nothing for the pipeline if it's called "Ads Pipeline": it's looked up by name and new leads land in its first stage. For another name, set `GHL_PIPELINE_NAME`. To skip the lookup, set `GHL_PIPELINE_ID` and `GHL_PIPELINE_STAGE_ID`.
 4. **Optionally, file tracking in custom fields too.** Create contact custom fields (GCLID, UTM campaign, and so on) and set `GHL_CONTACT_FIELDS` to a JSON map of lead field → field id, e.g. `{"gclid":"<id>","utm_campaign":"<id>"}`.
 5. **Test it.** Submit a test enquiry from the preview, then check the contact, tags, opportunity and note in GHL.
 
