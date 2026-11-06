@@ -147,19 +147,45 @@ export const skinLaxity = {
   results: {
     heading: "Real results from our clinic",
     items: [
+      // Real results from the clinic's GHL media ("Paula J Morpheus8 B&A" and
+      // "Morpheus8"); consent confirmed by the agency for the clinic on 2026-11-06
       {
-        kind: "placeholder",
+        kind: "photo",
         treatmentId: "morpheus8",
         sessions: "[3 sessions]",
         timeBetweenPhotos: "[12 weeks]",
-        note: "Consented before/after: jawline. Across the three, show a range of skin tones",
+        consentConfirmed: true,
+        before: {
+          id: "result-jawline-1-before",
+          alt: "Side profile of a woman's jowls and jawline before Morpheus8",
+          note: "Morpheus8 before, side profile",
+          src: "/assets/azira/result-jawline-1-before.jpg",
+        },
+        after: {
+          id: "result-jawline-1-after",
+          alt: "The same side profile after Morpheus8, with a firmer, more defined jawline",
+          note: "Morpheus8 after, side profile",
+          src: "/assets/azira/result-jawline-1-after.jpg",
+        },
       },
       {
-        kind: "placeholder",
+        kind: "photo",
         treatmentId: "morpheus8",
         sessions: "[3 sessions]",
         timeBetweenPhotos: "[12 weeks]",
-        note: "Consented before/after: neck. Across the three, show a range of skin tones",
+        consentConfirmed: true,
+        before: {
+          id: "result-jawline-2-before",
+          alt: "Three-quarter view of a woman's jawline and neck before Morpheus8",
+          note: "Morpheus8 before, jawline and neck",
+          src: "/assets/azira/result-jawline-2-before.jpg",
+        },
+        after: {
+          id: "result-jawline-2-after",
+          alt: "The same view after Morpheus8, with a tighter jawline and smoother neck",
+          note: "Morpheus8 after, jawline and neck",
+          src: "/assets/azira/result-jawline-2-after.jpg",
+        },
       },
       {
         kind: "placeholder",

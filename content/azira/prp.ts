@@ -185,12 +185,27 @@ export const prp = {
   results: {
     heading: "PRP results from our clinic",
     items: [
+      // Real result from the clinic's GHL media ("John B&A PRP": first and last
+      // photos of the series); consent confirmed by the agency for the clinic
+      // on 2026-11-06
       {
-        kind: "placeholder",
+        kind: "photo",
         treatmentId: "prp-hair",
         sessions: "[4 sessions]",
         timeBetweenPhotos: "[6 months]",
-        note: "Consented before/after: crown or parting, same lighting and angle. Across the three, show a range of hair and skin types",
+        consentConfirmed: true,
+        before: {
+          id: "result-prp-hair-1-before",
+          alt: "The crown of a man's head before PRP, with thinning hair and visible scalp",
+          note: "PRP hair before, crown",
+          src: "/assets/azira/result-prp-hair-1-before.jpg",
+        },
+        after: {
+          id: "result-prp-hair-1-after",
+          alt: "The same crown after a course of PRP, with fuller hair covering the scalp",
+          note: "PRP hair after, crown",
+          src: "/assets/azira/result-prp-hair-1-after.jpg",
+        },
       },
       {
         kind: "placeholder",
