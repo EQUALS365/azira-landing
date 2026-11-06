@@ -56,7 +56,7 @@ Next.js 16.4 (App Router), React 19.3, TypeScript, Tailwind CSS v4, shadcn/ui, Z
   - `app/robots.ts` and `app/sitemap.ts` answer per host.
 - **Video is a `VideoAsset` slot** (`components/film.tsx`): a poster with a play button, and the video loads only on tap. It never autoplays and is never a background, which keeps LCP fast. `treatments.film` leads the treatments block, and `clinician.video` replaces the portrait. Compress the files first with FFmpeg: about 720p, H.264, CRF 27, `+faststart`, a few MB each.
   - `app/[concern]/layout.tsx` holds the header and the Motion provider.
-- **Blocks**: one component per framework block lives in `components/blocks/`: SlimHeader, Hero, EnquiryForm, CredentialRow, TrustStrip, CauseCards, TreatmentOptions, WhoItSuits, Clinician, Results, NextSteps, Faqs, ClosingAsk and MobileActionBar. `components/concern-page.tsx` composes them in framework order. The hero takes the credentials and the form as slots, because on desktop the form is the third column of the first screen.
+- **Blocks**: one component per framework block lives in `components/blocks/`: SlimHeader, Hero, EnquiryForm, CredentialRow, TrustStrip, CauseCards, TreatmentOptions, WhoItSuits, Clinician, Results, NextSteps, Faqs, ClosingAsk and MobileActionBar. `components/concern-page.tsx` composes them in framework order. The hero takes the credentials and the form as slots, because on desktop the form is the third column of the first screen. On desktop the SlimHeader is sticky, and `HeaderBook` fades in a Book button once the form has scrolled under it; phones get the MobileActionBar instead.
 - **Images are `ImageAsset` slots**: `components/plate.tsx` renders a marked placeholder showing the expected `public/assets/<id>.jpg` path until the slot gets a `src`, then switches to `next/image`. `caption` becomes the gallery wall label under the plate. The logo works the same way through `components/logo.tsx`. `grep -r data-placeholder` finds any slot still waiting.
 - **Enquiries** (setup and testing in `docs/TRACKING.md`):
   - One Zod schema, `lib/enquiry-schema.ts`, is shared by the form and the Server Action in `app/actions.ts`. The form loads it on demand (on first focus, awaited on submit) to keep it off the first load; don't import it statically in client code.
@@ -100,7 +100,7 @@ Each page is a paid-ads landing page for one concern, built to turn a click into
 
 Hard rules. Don't break these, even if asked for something that seems to need it; flag the conflict instead.
 
-- **No site menu.** The header is the logo and phone number only.
+- **No site menu.** The header is the logo and phone number only, plus (desktop, after the form scrolls away) a Book button that scrolls back to the form.
 - **No discounts or countdown timers.**
 - **No stock photos.** Use the clinic's own photography only.
 - **Every Book button scrolls to the enquiry form at the top; every Call button dials the clinic (`tel:`).** No button links to another page or a separate contact page.
