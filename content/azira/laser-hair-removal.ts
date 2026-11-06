@@ -192,8 +192,8 @@ export const laserHairRemoval = {
       },
       {
         title: "Your consultation",
-        // draft: confirm patch test policy with clinic
-        body: "A face-to-face assessment of your skin, your hair and your medical history, with a patch test before your first session. Your consultation is complimentary.",
+        // Patch test policy from the clinic's own laser prep posts (GHL media)
+        body: "A face-to-face assessment of your skin, your hair and your medical history, with a patch test 24 hours before your first session. Your consultation is complimentary.",
       },
       {
         title: "Your written plan",
@@ -225,6 +225,12 @@ export const laserHairRemoval = {
           "Diolaze laser hair removal starts from £[price]. Your exact price depends on the areas and the number of sessions, and you'll have it in writing before you decide anything. Your consultation is complimentary.",
       },
       {
+        question: "How do I prepare for laser hair removal?",
+        // From the clinic's own laser prep posts (GHL media, "Laser 1-7")
+        answer:
+          "Shave the area 12 to 24 hours before your session, and don't wax or tweeze for three weeks beforehand, so the root is there for the laser to find. Keep the area out of the sun and off sunbeds for four weeks, and avoid fake tan for two weeks. On the day, skip deodorant and other products on the area, and save exercise for another day. Your first session starts with a patch test 24 hours before.",
+      },
+      {
         question: "Is there any downtime?",
         // draft: typical figure, confirm with clinic
         answer:
@@ -232,7 +238,6 @@ export const laserHairRemoval = {
       },
       {
         question: "Who is laser hair removal not suitable for?",
-        // draft: confirm patch test policy with clinic
         answer:
           "The laser targets the pigment in the hair, so it works best on darker hair. Light blonde, grey, red and white hair respond poorly to lasers, and we'll tell you honestly if that's you. We don't treat during pregnancy or breastfeeding, or over broken or infected skin. Your nurse assesses your skin and hair type at your consultation, tailors the settings to you and does a patch test before your first session.",
       },

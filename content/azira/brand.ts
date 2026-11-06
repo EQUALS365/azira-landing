@@ -8,7 +8,10 @@ export const brand = {
   logo: {
     id: "logo",
     alt: "Azira Aesthetics",
-    note: "Azira Aesthetics logo: ask the clinic for SVG or a high-res PNG",
+    // From the clinic's GHL media ("Azira Logo.jpg", 1024x289), trimmed with
+    // the white keyed out to transparency. Swap for an SVG if they send one.
+    src: "/assets/azira/logo.png",
+    note: "Azira Aesthetics logo: an SVG would be sharper if the clinic has one",
   },
   colours: {
     // "Stone & Espresso", chosen by the clinic from the colour review on
