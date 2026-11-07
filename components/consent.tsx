@@ -27,9 +27,11 @@ function readConsent(): Consent {
 }
 
 type Fbq = (...args: unknown[]) => void
+type Gtag = (...args: unknown[]) => void
 declare global {
   interface Window {
     fbq?: Fbq
+    gtag?: Gtag
   }
 }
 
@@ -44,9 +46,17 @@ export function setConsent(value: Consent) {
   } catch {
     // Storage blocked: the choice holds for this page view only
   }
-  // A pixel that already loaded can't be unloaded, but it can stop tracking
+  // A tag that already loaded can't be unloaded, but it can stop tracking
   if (window.fbq && value !== "unset") {
     window.fbq("consent", value === "granted" ? "grant" : "revoke")
+  }
+  if (window.gtag && value !== "unset") {
+    const state = value === "granted" ? "granted" : "denied"
+    window.gtag("consent", "update", {
+      ad_storage: state,
+      ad_user_data: state,
+      ad_personalization: state,
+    })
   }
   listeners.forEach((listener) => listener())
 }

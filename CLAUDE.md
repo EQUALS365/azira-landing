@@ -64,10 +64,11 @@ Next.js 16.4 (App Router), React 19.3, TypeScript, Tailwind CSS v4, shadcn/ui, Z
   - Tracking (GCLID, fbclid, UTMs, landing page) is captured on arrival and kept for the visit in sessionStorage (`lib/tracking.ts`), then sent with the form along with `?h=` and the page.
   - Leads go to the destinations in `LEAD_DESTINATIONS` (`lib/leads/`): `email` (Resend, with a per-lead idempotency key), `webhook` (one flat JSON record for a Google Sheet via Apps Script, a GoHighLevel inbound webhook, or Zapier/Make) and `ghl` (straight into GoHighLevel's API v3: contact upsert, tags, an opportunity in the ads pipeline and a note with the full tracking; see `lib/leads/ghl.ts`). Failures are logged by lead ID, never with personal details. In production with no destination configured, the visitor is told to call rather than the lead being dropped.
   - There's a honeypot field, and answers are kept as a sessionStorage draft so an in-app browser reload doesn't lose them.
-- **Consent and Meta**:
+- **Consent, Meta and Google Ads**:
   - `components/consent.tsx` is a first-party banner: equal Reject and Accept, a choice stored for about six months, and "Cookie settings" in the footer to change it.
   - `components/meta-pixel.tsx` loads the Pixel from `NEXT_PUBLIC_META_PIXEL_ID` only after Accept. It sends PageView on load, and Lead on a successful enquiry with the lead ID as `eventID`.
   - `META_DOMAIN_VERIFICATION` adds the domain-verification meta tag.
+  - `components/google-ads.tsx` loads gtag.js from `NEXT_PUBLIC_GOOGLE_ADS_ID` only after Accept, and sends the Lead conversion (`NEXT_PUBLIC_GOOGLE_ADS_LEAD_LABEL`) on a successful enquiry with the lead ID as `transaction_id`. Reject sends a consent update denying ad storage.
   - Environment variables are listed in `.env.example`.
 - **Before/after rules are enforced in code**: a real photo result must carry `consentConfirmed: true` or the content won't parse. Results for `prescriptionOnly` treatments are dropped. The block hides when `showResults` is off, or for Meta traffic when `hideResultsForMeta` is on.
 - **Motion** uses `motion/react` with `LazyMotion`, and its features are loaded asynchronously from `components/motion-features.ts`. Import `m` from `motion/react-m`; `strict` mode forbids `motion.*`. Motion is used only for:

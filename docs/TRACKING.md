@@ -1,4 +1,4 @@
-# Leads, tracking and the Meta Pixel
+# Leads, tracking, the Meta Pixel and Google Ads
 
 How enquiries reach the clinic, what each lead carries, and how to test the Pixel. The environment variables are listed in `.env.example`. Set them in `.env.local` for development and in Vercel for each deployment.
 
@@ -94,6 +94,17 @@ To send email *and* log to a sheet or GHL, use `LEAD_DESTINATIONS=email,webhook`
 - `META_DOMAIN_VERIFICATION` adds the `facebook-domain-verification` meta tag that Business Manager asks for.
 
 The Results block can also be hidden for Meta traffic (any `utm_source` of facebook, fb, instagram, ig or meta, or an `fbclid`) by setting `hideResultsForMeta: true` in the concern's content file. The proxy then serves a prebuilt version without it.
+
+## Google Ads conversions
+
+- `components/google-ads.tsx` loads Google's tag (gtag.js) only after **Accept**, the same as the Pixel. Rejecting later sends a consent update that turns ad storage off.
+- Set `NEXT_PUBLIC_GOOGLE_ADS_ID` (`AW-` plus digits) and `NEXT_PUBLIC_GOOGLE_ADS_LEAD_LABEL`. Both are baked in at build time, so redeploy after changing them.
+- Create the conversion in Google Ads: **Goals → Conversions → New conversion action → Website → Add manually**, category **Submit lead form**, count **One**. Under **Tag setup → Install the tag yourself**, the event snippet shows `send_to: 'AW-123456789/AbC-dEfGhIj'`: the part before the slash is the ID, the part after is the label.
+- A successful enquiry sends the `conversion` event with the lead ID as `transaction_id`, so one lead counts once.
+- gtag reads the click's `gclid` from the landing URL, which the proxy leaves unchanged. Every lead also carries the GCLID into GHL, so conversions can be uploaded offline (for example "booked" or "treated") if that's wanted later.
+- Visitors who reject cookies aren't counted by the tag. Their GCLID still reaches GHL with the lead.
+
+To test: install **Google Tag Assistant** (tagassistant.google.com), connect it to the page, accept cookies, and submit a test enquiry. The conversion event should show with the ID, label and transaction ID. In Google Ads the action reads "Recording conversions" within a few hours.
 
 ## Testing the Pixel
 

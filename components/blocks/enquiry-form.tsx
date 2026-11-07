@@ -49,6 +49,7 @@ import {
   type EnquiryValues,
 } from "@/lib/enquiry-values"
 import { readAdGroup, rememberVisitTracking } from "@/lib/tracking"
+import { trackGoogleAdsLead } from "@/components/google-ads"
 import { trackLead } from "@/components/meta-pixel"
 import { cn } from "@/lib/utils"
 
@@ -215,6 +216,7 @@ export function EnquiryForm({ slug, concern, form, clinic }: EnquiryFormProps) {
     if (state.status === "success") {
       clear()
       trackLead(state.leadId, concern)
+      trackGoogleAdsLead(state.leadId)
       successRef.current?.focus()
     }
   }, [state, clear, concern])

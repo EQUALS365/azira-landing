@@ -205,7 +205,7 @@ export const skinLaxity = {
       },
       {
         title: "Your consultation",
-        body: "A face-to-face assessment of all four layers, your medical history and what you'd like to change. [Consultation fee]",
+        body: "A face-to-face assessment of all four layers, your medical history and what you'd like to change. Your consultation is complimentary.",
       },
       {
         title: "Your written plan",
@@ -233,7 +233,7 @@ export const skinLaxity = {
       {
         question: "How much will it cost?",
         answer:
-          "Morpheus8 starts from £[price] and skin boosters from £[price]. Your exact price depends on the area and the number of sessions you need, and you'll have it in writing before you decide anything. [Consultation fee]",
+          "Morpheus8 starts from £[price] and skin boosters from £[price]. Your exact price depends on the area and the number of sessions you need, and you'll have it in writing before you decide anything. Your consultation is complimentary.",
       },
       {
         question: "Will I look different?",

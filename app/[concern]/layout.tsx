@@ -1,5 +1,6 @@
 import { SlimHeader } from "@/components/blocks/slim-header"
 import { CookieBanner } from "@/components/consent"
+import { GoogleAds } from "@/components/google-ads"
 import { MetaPixel } from "@/components/meta-pixel"
 import { MotionProvider } from "@/components/motion"
 import { site } from "@/content"
@@ -16,6 +17,7 @@ export default function ConcernLayout({
       {children}
       <CookieBanner />
       <MetaPixel />
+      <GoogleAds />
     </MotionProvider>
   )
 }
