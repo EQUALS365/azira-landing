@@ -11,7 +11,6 @@ import type { ConcernPageInput } from "../schema"
 export const prp = {
   slug: "prp",
   concern: "PRP",
-  subdomain: "prp",
   showResults: true,
   hideResultsForMeta: false,
   meta: {

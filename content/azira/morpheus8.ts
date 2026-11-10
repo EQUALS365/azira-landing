@@ -14,7 +14,6 @@ import type { ConcernPageInput } from "../schema"
 export const morpheus8 = {
   slug: "morpheus8",
   concern: "Morpheus8",
-  subdomain: "morpheus8",
   showResults: true,
   hideResultsForMeta: false,
   meta: {

@@ -48,12 +48,13 @@ Next.js 16.4 (App Router), React 19.3, TypeScript, Tailwind CSS v4, shadcn/ui, Z
   - `app/[concern]/v/[headline]/[audience]/page.tsx` holds the prebuilt variants.
   - Both use `generateStaticParams` with `dynamicParams = false`.
   - `proxy.ts` rewrites `/<concern>?h=<ad group>` (and Meta traffic, when a page sets `hideResultsForMeta`) to the matching variant. The visitor's URL is unchanged, and the matched headline is static HTML, not a client-side swap.
-  - **Treatment subdomains**: a concern with `subdomain` (plus `clinic.domain`) is served at the root of `<subdomain>.<domain>`, with the address bar unchanged. `/<slug>` on its own subdomain redirects to `/`, and another treatment's path redirects to that treatment's subdomain. Each subdomain needs a DNS record pointing at Vercel and the domain added to the Vercel project.
-  - On any other host, `/` is `app/page.tsx`: an index of every concern page, each opening in a new tab (not an ad landing page; noindex).
+  - **Live address**: pages live at `<SITE_URL>/<slug>`, e.g. `offers.azira-aesthetics.co.uk/morpheus8` (one DNS record, one Vercel domain). On that host, `/` redirects (307) to `clinic.website`.
+  - **Treatment subdomains** (optional, unused by Azira): a concern with `subdomain` (plus `clinic.domain`) is served at the root of `<subdomain>.<domain>` instead, with the address bar unchanged. `/<slug>` on its own subdomain redirects to `/`, and another treatment's path redirects to that treatment's subdomain. Each subdomain needs its own DNS record and Vercel domain.
+  - On previews and vercel.app, `/` is `app/page.tsx`: an index of every concern page, each opening in a new tab (not an ad landing page; noindex).
 - **SEO** (`lib/seo.ts`):
-  - It sets the canonical URL (the subdomain root), Open Graph and Twitter cards, and one JSON-LD graph per page: MedicalClinic, MedicalWebPage with MedicalProcedure, VideoObject and FAQPage.
-  - A page is indexed only when it has `meta.index` and a subdomain, and the deployment sets `SITE_INDEXING=1`. Variants never are.
-  - `app/robots.ts` and `app/sitemap.ts` answer per host.
+  - It sets the canonical URL (`<SITE_URL>/<slug>`, or the subdomain root), Open Graph and Twitter cards, and one JSON-LD graph per page: MedicalClinic, MedicalWebPage with MedicalProcedure, VideoObject and FAQPage.
+  - A page is indexed only when it has `meta.index` and a live address (`SITE_URL` or a subdomain), and the deployment sets `SITE_INDEXING=1`. Variants never are.
+  - `app/robots.ts` and `app/sitemap.ts` answer per host: the `SITE_URL` host lists all its pages, a treatment subdomain its one page, and every other host disallows crawling.
 - **Video is a `VideoAsset` slot** (`components/film.tsx`): a poster with a play button, and the video loads only on tap. It never autoplays and is never a background, which keeps LCP fast. `treatments.film` leads the treatments block, and `clinician.video` replaces the portrait. Compress the files first with FFmpeg: about 720p, H.264, CRF 27, `+faststart`, a few MB each.
   - `app/[concern]/layout.tsx` holds the header and the Motion provider.
 - **Blocks**: one component per framework block lives in `components/blocks/`: SlimHeader, Hero, EnquiryForm, CredentialRow, TrustStrip, CauseCards, TreatmentOptions, WhoItSuits, Clinician, Results, NextSteps, Faqs, ClosingAsk and MobileActionBar. `components/concern-page.tsx` composes them in framework order. The hero takes the credentials and the form as slots, because on desktop the form is the third column of the first screen. On desktop the SlimHeader is sticky, and `HeaderBook` fades in a Book button once the form has scrolled under it; phones get the MobileActionBar instead.

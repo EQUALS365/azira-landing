@@ -11,7 +11,6 @@ import type { ConcernPageInput } from "../schema"
 export const laserHairRemoval = {
   slug: "laser-hair-removal",
   concern: "Laser hair removal",
-  subdomain: "laser-hair-removal",
   showResults: true,
   hideResultsForMeta: false,
   meta: {

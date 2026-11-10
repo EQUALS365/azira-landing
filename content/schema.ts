@@ -242,8 +242,9 @@ export const concernPageSchema = z
     /** What the page is about; labels each lead, e.g. "Morpheus8" */
     concern: text,
     /**
-     * Serve this page at the root of <subdomain>.<clinic.domain>, e.g.
-     * "morpheus8" for morpheus8.azira-aesthetics.co.uk
+     * Optional: serve this page at the root of <subdomain>.<clinic.domain>,
+     * e.g. "morpheus8" for morpheus8.azira-aesthetics.co.uk. Without it the
+     * page lives at <SITE_URL>/<slug>.
      */
     subdomain: z
       .string()
@@ -255,8 +256,9 @@ export const concernPageSchema = z
       title: text,
       description: text,
       /**
-       * Let search engines index the page. Only takes effect on its own
-       * subdomain in production; preview builds and variants are never indexed.
+       * Let search engines index the page. Only takes effect at its live
+       * address (SITE_URL or its own subdomain) in production; preview builds
+       * and variants are never indexed.
        */
       index: z.boolean().default(false),
     }),

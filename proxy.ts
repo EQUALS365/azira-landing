@@ -1,13 +1,15 @@
 import { NextResponse, type NextRequest } from "next/server"
 
 import { getConcern, getVariant, type ConcernPage } from "@/content"
-import { pageForHost, subdomainHost } from "@/lib/seo"
+import { site } from "@/content"
+import { isSiteHost, pageForHost, subdomainHost } from "@/lib/seo"
 import { isMetaTraffic, readAdGroup } from "@/lib/tracking"
 
 /**
  * Keeps concern pages fully static while matching the ad:
- * - A treatment subdomain (morpheus8.<clinic domain>) serves its page at the
- *   root, with the address bar unchanged.
+ * - Pages live at /<slug> (offers.<clinic domain>/morpheus8). A page that
+ *   sets a treatment subdomain (morpheus8.<clinic domain>) is served at that
+ *   root instead, with the address bar unchanged.
  * - /<concern>?h=<ad group> is rewritten to a prebuilt variant, so the
  *   visitor gets the matched headline in the first HTML.
  * - Meta traffic gets a variant without results when the page asks for it.
@@ -26,7 +28,13 @@ export function proxy(request: NextRequest) {
       return NextResponse.redirect(url, 308)
     }
   } else if (pathname === "/") {
-    // Elsewhere the root is the index of treatment pages (app/page.tsx)
+    // No advert points at the bare live address (offers.<domain>), so it
+    // sends visitors to the clinic's own website: temporary (307) in case the
+    // clinic wants a page there later. Previews and vercel.app keep the index
+    // of treatment pages (app/page.tsx) for review.
+    if (isSiteHost(host) && site.clinic.website) {
+      return NextResponse.redirect(site.clinic.website, 307)
+    }
     return NextResponse.next()
   }
 

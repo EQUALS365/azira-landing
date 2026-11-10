@@ -145,7 +145,7 @@ Save files to `public/assets/azira/` with these names (JPG or WebP, at least 200
 ## 14. Domain
 
 - Who manages DNS: **TODO**
-- Subdomain to use (for example `offers.azira-aesthetics.co.uk`): **TODO**
+- Subdomain to use: `offers.azira-aesthetics.co.uk`, with one path per treatment (confirmed by Ash, 2026-11-10)
 
 ## 15. Privacy policy
 

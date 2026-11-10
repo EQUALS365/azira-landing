@@ -18,7 +18,6 @@ import type { ConcernPageInput } from "../schema"
 export const rfMicroneedling = {
   slug: "rf-microneedling",
   concern: "RF microneedling",
-  subdomain: "rf-microneedling",
   showResults: true,
   hideResultsForMeta: false,
   meta: {

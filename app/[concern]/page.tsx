@@ -17,8 +17,8 @@ type Props = { params: Promise<{ concern: string }> }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = getConcern((await params).concern)
   if (!page) return {}
-  // Indexed only when the page opts in, has its own subdomain and the
-  // deployment sets SITE_INDEXING=1 (see lib/seo.ts)
+  // Indexed only when the page opts in, has a live address (SITE_URL or its
+  // own subdomain) and the deployment sets SITE_INDEXING=1 (see lib/seo.ts)
   return pageMetadata(page)
 }
 

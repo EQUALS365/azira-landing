@@ -8,14 +8,34 @@ import type {
   VideoAsset,
 } from "@/content/schema"
 
-// Search metadata and structured data for concern pages. A page on its own
-// treatment subdomain (morpheus8.<clinic domain>) is canonical at that root.
+// Search metadata and structured data for concern pages. A page lives at
+// /<slug> on the deployment's own address (SITE_URL, e.g.
+// https://offers.azira-aesthetics.co.uk/morpheus8), or, if it sets
+// `subdomain`, at the root of its own treatment subdomain instead.
 
 /**
  * Indexing is opt-in per deployment: set SITE_INDEXING=1 on production once
- * the subdomains are live. Preview builds never ask to be indexed.
+ * its address is live. Preview builds never ask to be indexed.
  */
 const indexingEnabled = process.env.SITE_INDEXING === "1"
+
+/** The deployment's own address, without a trailing slash */
+const siteUrl = process.env.SITE_URL?.trim().replace(/\/$/, "") || undefined
+
+function hostName(host: string | null | undefined) {
+  return host?.split(":")[0].toLowerCase() || undefined
+}
+
+/** True when a request is for SITE_URL's host (not a preview or vercel.app) */
+export function isSiteHost(host: string | null | undefined) {
+  const name = hostName(host)
+  if (!name || !siteUrl) return false
+  try {
+    return new URL(siteUrl).hostname === name
+  } catch {
+    return false
+  }
+}
 
 /** The page's own subdomain host, e.g. morpheus8.azira-aesthetics.co.uk */
 export function subdomainHost(page: ConcernPage) {
@@ -25,7 +45,7 @@ export function subdomainHost(page: ConcernPage) {
 
 /** The page that a treatment subdomain serves at its root */
 export function pageForHost(host: string | null | undefined) {
-  const name = host?.split(":")[0].toLowerCase()
+  const name = hostName(host)
   if (!name) return undefined
   return site.concerns.find((page) => subdomainHost(page) === name)
 }
@@ -35,22 +55,41 @@ export function pageOrigin(page: ConcernPage) {
   const host = subdomainHost(page)
   if (host) return `https://${host}`
   const fallback =
-    process.env.SITE_URL ??
+    siteUrl ??
     (process.env.VERCEL_PROJECT_PRODUCTION_URL
       ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
       : undefined)
   return fallback?.replace(/\/$/, "")
 }
 
-/** The canonical URL: the subdomain root, or /<slug> on the fallback origin */
+/** The canonical URL: the subdomain root, or /<slug> on the site's origin */
 export function pageUrl(page: ConcernPage) {
   const origin = pageOrigin(page)
   if (!origin) return undefined
   return subdomainHost(page) ? `${origin}/` : `${origin}/${page.slug}`
 }
 
+/** The page's public address, once its subdomain or SITE_URL is set */
+export function liveUrl(page: ConcernPage) {
+  return subdomainHost(page) || siteUrl ? pageUrl(page) : undefined
+}
+
+/** Indexed only at a real address: its own subdomain, or SITE_URL */
 export function shouldIndex(page: ConcernPage) {
-  return indexingEnabled && page.meta.index && !!subdomainHost(page)
+  return indexingEnabled && page.meta.index && !!liveUrl(page)
+}
+
+/**
+ * The pages a host lists in its sitemap: a treatment subdomain's own page,
+ * or on SITE_URL every page that lives there. Other hosts list none.
+ */
+export function indexedPagesForHost(host: string | null | undefined) {
+  const own = pageForHost(host)
+  if (own) return shouldIndex(own) ? [own] : []
+  if (!isSiteHost(host)) return []
+  return site.concerns.filter(
+    (page) => !subdomainHost(page) && shouldIndex(page)
+  )
 }
 
 /** Title, description, canonical, robots and social cards for one page */

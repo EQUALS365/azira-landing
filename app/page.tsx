@@ -6,7 +6,7 @@ import { MotionProvider, Stagger, StaggerItem } from "@/components/motion"
 import { Plate, WallLabel } from "@/components/plate"
 import { buttonVariants } from "@/components/ui/button"
 import { site } from "@/content"
-import { subdomainHost } from "@/lib/seo"
+import { liveUrl } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: `Treatment pages | ${site.clinic.name}`,
@@ -18,7 +18,8 @@ const nudge =
 
 /**
  * The root of the main deployment (not an ad landing page): every concern
- * page hung as a plate, each opening in a new tab. Treatment subdomains never
+ * page hung as a plate, each opening in a new tab. The live address (SITE_URL)
+ * sends its root to the clinic's website instead, and treatment subdomains
  * show this; their root is their own page (see proxy.ts).
  */
 export default function TreatmentIndex() {
@@ -37,8 +38,8 @@ export default function TreatmentIndex() {
             </h1>
             <p className="max-w-[48ch] text-[1.0625rem] leading-relaxed lg:col-span-5 lg:col-start-8">
               One page for each advert, in {site.clinic.name}&apos;s own
-              photography. Each opens in a new tab, and pages with a subdomain
-              also answer at their own address once its DNS record is live.
+              photography. Each opens in a new tab, and also answers at its live
+              address once the DNS record is in place.
             </p>
           </div>
 
@@ -48,7 +49,7 @@ export default function TreatmentIndex() {
             className="mt-12 grid gap-x-8 gap-y-16 border-t border-copy pt-10 md:grid-cols-2 lg:mt-16 lg:pt-12 xl:grid-cols-3"
           >
             {site.concerns.map((page) => {
-              const host = subdomainHost(page)
+              const live = liveUrl(page)
               return (
                 <StaggerItem as="li" key={page.slug}>
                   <figure>
@@ -69,7 +70,8 @@ export default function TreatmentIndex() {
                       />
                     </a>
                     <WallLabel className="text-mark-ink">
-                      {host ?? "No subdomain · main site only"}
+                      {live?.replace(/^https:\/\//, "") ??
+                        "Live address not set"}
                     </WallLabel>
                   </figure>
                   <h2 className="mt-6 text-[1.75rem] leading-tight sm:text-[2rem]">
@@ -89,9 +91,9 @@ export default function TreatmentIndex() {
                       <ArrowUpRightIcon aria-hidden className={nudge} />
                       <span className="sr-only">(opens in a new tab)</span>
                     </a>
-                    {host && (
+                    {live && (
                       <a
-                        href={`https://${host}/`}
+                        href={live}
                         target="_blank"
                         rel="noopener"
                         className={buttonVariants({
@@ -99,7 +101,7 @@ export default function TreatmentIndex() {
                           variant: "outline",
                         })}
                       >
-                        Subdomain
+                        Live address
                         <ArrowUpRightIcon aria-hidden className={nudge} />
                         <span className="sr-only">(opens in a new tab)</span>
                       </a>
