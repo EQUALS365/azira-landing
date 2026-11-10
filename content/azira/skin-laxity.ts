@@ -12,6 +12,7 @@ export const skinLaxity = {
     title: "Skin laxity treatment in Newport | Azira Aesthetics",
     description:
       "Nurse-led skin tightening in Newport. We start with why your skin has loosened, then show you honest options and prices.",
+    index: true,
   },
   hero: {
     defaultHeadline: "Firmer skin starts with knowing why it loosened",
