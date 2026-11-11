@@ -28,8 +28,10 @@ export const clinic = {
   trustLogos: [
     {
       id: "trust-award-2025",
-      alt: "[Awards body] 2025",
-      note: "Award logo: Best Clinic in Wales 2025",
+      // The clinic named the awards body on 2026-11-12; the logo file is
+      // still to come
+      alt: "Safety in Beauty Awards",
+      note: "Safety in Beauty Awards logo",
     },
     {
       id: "trust-award-2024",
@@ -52,7 +54,7 @@ export const clinic = {
     {
       name: "Grace",
       qualifications:
-        "Registered nurse and independent nurse prescriber. Owner of Azira Aesthetics and Azira Aesthetics Academy.",
+        "Registered Nurse and Independent Nurse Prescriber. Founding Director of The Aesthetics Network and Key Opinion Leader for Croma Pharma. Owner of Azira Aesthetics and Azira Aesthetics Academy.",
       portrait: {
         id: "portrait-grace",
         alt: "Grace, owner and Clinical Director, in the Azira Aesthetics clinic",
@@ -62,7 +64,7 @@ export const clinic = {
       },
       philosophy:
         "Within our clinic we are passionate about providing safe results. We only use the highest-grade medical products, and all of our products are prescribed from independent aesthetic pharmacies.",
-      qualification: "Independent nurse prescriber",
+      qualification: "Independent Nurse Prescriber",
       role: "Owner and Clinical Director",
       years: "11+ years nursing, from intensive care",
       video: {
@@ -83,7 +85,7 @@ export const clinic = {
     },
     {
       name: "Aylish",
-      qualifications: "Registered nurse at Azira Aesthetics.",
+      qualifications: "Registered Nurse at Azira Aesthetics.",
       portrait: {
         id: "portrait-aylish",
         alt: "Aylish, aesthetics nurse, in the Azira Aesthetics clinic",
@@ -95,7 +97,7 @@ export const clinic = {
         // Said of microneedling in her intro; confirm she's happy for it to
         // stand as her approach
         "What I like about it is that it's evidence-based, and it can really make a big difference.",
-      qualification: "Registered nurse",
+      qualification: "Registered Nurse",
       role: "Aesthetics Nurse",
       years: "Nursing since 2016, aesthetics since 2023",
       video: {

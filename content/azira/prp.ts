@@ -28,7 +28,7 @@ export const prp = {
     headlines: [
       {
         adGroup: "prp-hair-treatment",
-        headline: "PRP hair treatment in Newport, led by nurses",
+        headline: "PRP hair treatment, led by nurses",
         intro:
           "We check what's behind your thinning first. If PRP suits you, it uses plasma from your own blood and usually takes around 10 to 15 minutes.",
         concernOption: "Thinning hair",
@@ -58,7 +58,8 @@ export const prp = {
   },
   form: {
     title: "Tell us about your hair or skin",
-    intro: "A nurse will call you back to talk it through, with no obligation.",
+    intro:
+      "A team member will call you back to talk it through, with no obligation.",
     concernLabel: "What would you like help with?",
     concernOptions: [
       "Thinning hair",
@@ -137,7 +138,8 @@ export const prp = {
         results: "Changes are gradual and usually assessed over 3 to 6 months",
         bestFor:
           "Early thinning or a receding hairline, once the cause is checked",
-        fromPrice: null,
+        // Clinic's price, 2026-11-12
+        fromPrice: 200,
         prescriptionOnly: false,
       },
       {
@@ -161,7 +163,8 @@ export const prp = {
         results: "Build gradually over around 3 months",
         bestFor:
           "Tired under-eyes, and dull or crepey skin on the face and neck",
-        fromPrice: null,
+        // Clinic's price, 2026-11-12
+        fromPrice: 200,
         prescriptionOnly: false,
       },
     ],
@@ -177,12 +180,14 @@ export const prp = {
       "You're pregnant or breastfeeding",
       "You have an active infection, or broken or inflamed skin, in the area",
       "Your hair loss needs a different approach, such as a medical cause your GP should look at. We'll tell you honestly",
-      "A blood disorder, another medical condition or a medication such as blood thinners makes treatment unsafe. We check this at your consultation",
+      // Clinic's wording, 2026-11-12
+      "A contraindication or implanted device. We check this at your consultation",
     ],
   },
   clinicianId: 1,
   results: {
-    heading: "PRP results from our clinic",
+    // One result for now, at the clinic's request (2026-11-12)
+    heading: "PRP result from our clinic",
     items: [
       // Real result from the clinic's GHL media ("John B&A PRP": first and last
       // photos of the series); consent confirmed by the agency for the clinic
@@ -206,20 +211,6 @@ export const prp = {
           src: "/assets/azira/result-prp-hair-1-after.jpg",
         },
       },
-      {
-        kind: "placeholder",
-        treatmentId: "prp-hair",
-        sessions: "[4 sessions]",
-        timeBetweenPhotos: "[6 months]",
-        note: "Consented before/after: hairline at the temples, same lighting and angle. Across the three, show a range of hair and skin types",
-      },
-      {
-        kind: "placeholder",
-        treatmentId: "prp-skin",
-        sessions: "[3 sessions]",
-        timeBetweenPhotos: "[12 weeks]",
-        note: "Consented before/after: under-eye area. Across the three, show a range of hair and skin types",
-      },
     ],
   },
   steps: {
@@ -227,7 +218,7 @@ export const prp = {
     items: [
       {
         title: "We call you back",
-        body: "A nurse rings to understand what you've noticed and answer your first questions.",
+        body: "A team member rings to understand what you've noticed and answer your first questions.",
       },
       {
         title: "Your consultation",
@@ -261,7 +252,7 @@ export const prp = {
       {
         question: "How much does PRP cost?",
         answer:
-          "PRP for hair starts from £[price] and PRP for skin from £[price]. Your exact price depends on the area and the number of sessions you need, and you'll have it in writing before you decide anything. Your consultation is complimentary.",
+          "PRP for hair starts from £200 and PRP for skin from £200. Your exact price depends on the area and the number of sessions you need, and you'll have it in writing before you decide anything. Your consultation is complimentary.",
       },
       {
         question: "Is there any downtime?",
@@ -278,12 +269,12 @@ export const prp = {
       {
         question: "Who is PRP not suitable for?",
         answer:
-          "PRP isn't suitable if you're pregnant or breastfeeding, have an active infection in the area or have a blood disorder. Some medications, such as blood thinners, can also rule it out. We go through your medical history at your consultation before anything is booked.",
+          "We won't treat you if you have a contraindication or an implanted device. We check this at your consultation, before anything is booked.",
       },
     ],
   },
   closing: {
     headline: "Find out if PRP is right for you",
-    body: "Tell us what you've noticed in your hair or skin. A nurse will call you back to check the cause, and you'll know whether PRP suits you before you commit to anything.",
+    body: "Tell us what you've noticed in your hair or skin. A team member will call you back to check the cause, and you'll know whether PRP suits you before you commit to anything.",
   },
 } satisfies ConcernPageInput

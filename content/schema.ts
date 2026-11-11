@@ -242,6 +242,11 @@ export const concernPageSchema = z
     /** What the page is about; labels each lead, e.g. "Morpheus8" */
     concern: text,
     /**
+     * Retired addresses that now lead here, e.g. the slug of a page merged
+     * into this one. /<alias> redirects to this page, keeping its tracking.
+     */
+    aliases: z.array(z.string().regex(/^[a-z0-9-]+$/)).default([]),
+    /**
      * Optional: serve this page at the root of <subdomain>.<clinic.domain>,
      * e.g. "morpheus8" for morpheus8.azira-aesthetics.co.uk. Without it the
      * page lives at <SITE_URL>/<slug>.

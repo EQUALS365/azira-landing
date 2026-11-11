@@ -1,23 +1,33 @@
 import type { ConcernPageInput } from "../schema"
 
 // DRAFT COPY for the skin laxity page, written for review by the clinic.
-// Treatment specs are typical figures and must be confirmed; prices,
-// names and credentials stay bracketed until the clinic supplies them.
+// On 2026-11-12 the clinic merged its Morpheus8 and RF microneedling pages
+// into this one (their old addresses redirect here, see `aliases`), and
+// supplied the price, the results timing and the wording for contraindications
+// ("Updates to landing pages" document).
+// From the clinic's own videos (docs/azira-video-facts.md): radiofrequency and
+// microneedling in the same treatment, different depths to stimulate the
+// collagen layers, lower face contouring, the jowls and sagging skin, an hour
+// of numbing cream first, Dermalux LED aftercare, three treatments for optimum
+// results, delivery by medical professionals and the complimentary
+// consultation. Fields marked "draft" are typical figures to confirm.
 export const skinLaxity = {
   slug: "skin-laxity",
+  aliases: ["morpheus8", "rf-microneedling"],
   concern: "Skin laxity",
   showResults: true,
   hideResultsForMeta: false,
   meta: {
-    title: "Skin laxity treatment in Newport | Azira Aesthetics",
+    title: "Skin laxity treatment with Morpheus8 in Newport | Azira Aesthetics",
     description:
-      "Nurse-led skin tightening in Newport. We start with why your skin has loosened, then show you honest options and prices.",
+      "Nurse-led Morpheus8 skin tightening in Newport. We start with why your skin has loosened, then show you honest options and prices.",
     index: true,
   },
   hero: {
     defaultHeadline: "Firmer skin starts with knowing why it loosened",
     intro:
       "Our award-winning nurses assess every layer of your face first, then show you honest options and prices.",
+    // Ad group slugs are drafts until the ads team confirms them
     headlines: [
       {
         adGroup: "neck-tightening",
@@ -49,7 +59,8 @@ export const skinLaxity = {
   },
   form: {
     title: "Tell us about your concern",
-    intro: "A nurse will call you back to talk it through, with no obligation.",
+    intro:
+      "A team member will call you back to talk it through, with no obligation.",
     concernOptions: [
       "Skin laxity",
       "Jowls or jawline",
@@ -68,7 +79,7 @@ export const skinLaxity = {
     items: [
       {
         title: "Skin",
-        body: "Collagen and elastin production slows, so skin becomes thinner and less springy.",
+        body: "Collagen and elastin production slows down, so skin becomes thinner and less springy.",
       },
       {
         title: "Ligaments",
@@ -85,47 +96,48 @@ export const skinLaxity = {
     ],
   },
   treatments: {
-    heading: "Where a plan can lead",
+    heading: "Morpheus8 at Azira",
     intro:
-      "Two options we often recommend for laxity. Your plan may use one, both, or neither, and you'll see exact prices before you decide.",
+      "Watch Grace perform a Morpheus8 treatment, through to the LED aftercare. Every treatment here is delivered by medical professionals, and you'll see your exact price before you decide.",
+    film: {
+      id: "film-morpheus8",
+      title: "Morpheus8 at Azira Aesthetics",
+      description:
+        "Grace performs a Morpheus8 treatment on patient Eva, who explains why she trusts the clinic, followed by a Dermalux LED aftercare session.",
+      durationSeconds: 67,
+      uploadDate: "2026-11-05",
+      poster: {
+        id: "poster-film-morpheus8",
+        src: "/assets/azira/poster-film-morpheus8.jpg",
+        alt: "The Morpheus8 tip on a patient's forehead, the InMode screen behind",
+        note: "Morpheus8 tip on the forehead, InMode screen behind, from the Morpheus8 film",
+      },
+      src: "/assets/azira/film-morpheus8.mp4",
+    },
     items: [
       {
         id: "morpheus8",
         name: "Morpheus8",
         kind: "Radiofrequency microneedling",
         image: {
-          id: "treatment-rf-morpheus8",
-          alt: "A hand holding the Morpheus8 handpiece",
-          note: "The Morpheus8 handpiece, from the clinic's InMode film",
-          caption: "Morpheus8 handpiece · Treatment room",
-          src: "/assets/azira/treatment-rf-morpheus8.jpg",
+          id: "treatment-morpheus8",
+          src: "/assets/azira/treatment-morpheus8.jpg",
+          alt: "A gloved hand holding the Morpheus8 handpiece to a patient's forehead",
+          note: "Close-up: gloved hand holding the Morpheus8 handpiece to a patient's forehead",
+          caption: "Morpheus8 · Treatment room",
         },
         summary:
-          "Radiofrequency microneedling that heats the deeper layers of the skin to stimulate new collagen.",
-        sessions: "Usually 3, about 4 to 6 weeks apart",
-        downtime: "Redness and swelling for 2 to 3 days",
-        results: "Build gradually over around 3 months",
-        bestFor: "Mild to moderate laxity along the jaw, lower face and neck",
-        fromPrice: null,
-        prescriptionOnly: false,
-      },
-      {
-        id: "skin-boosters",
-        name: "Skin boosters",
-        kind: "Injectable hydration",
-        image: {
-          id: "treatment-skin-boosters",
-          alt: "A gloved hand holding a skin booster syringe",
-          note: "Gloved hand with a skin booster syringe, dark background",
-          caption: "Skin booster · Treatment room",
-        },
-        summary:
-          "Injectable hyaluronic acid that hydrates from within and improves the skin's firmness and quality.",
-        sessions: "Usually 2, about 4 weeks apart",
-        downtime: "Small raised marks for 24 to 48 hours",
-        results: "Skin looks more hydrated within weeks",
-        bestFor: "Crepey, dehydrated or thinning skin on the face and neck",
-        fromPrice: null,
+          "Radiofrequency and microneedling in one treatment. We work at different depths to stimulate the collagen layers, to tighten the skin and improve its texture.",
+        // draft: typical figure, confirm with clinic (the 3 treatments are from the clinic's video; the spacing is not)
+        sessions: "3 for optimum results, about 4 to 6 weeks apart",
+        // draft: typical figure, confirm with clinic
+        downtime: "Redness for 1 to 3 days, which LED aftercare can calm",
+        // Clinic's wording, 2026-11-12
+        results: "Optimal results up to 90 days after your third treatment",
+        bestFor:
+          "Skin tightening along the jaw, lower face and neck, and improved texture",
+        // Clinic's price, 2026-11-12
+        fromPrice: 350,
         prescriptionOnly: false,
       },
     ],
@@ -133,20 +145,21 @@ export const skinLaxity = {
   suitability: {
     goodFit: [
       "You've noticed early to moderate loosening along your jaw, neck or lower face",
-      "You want a gradual change that looks like you on a good day",
-      "You can commit to a course of treatment and the aftercare",
+      "You'd like improved texture and skin tightening",
+      "You can commit to a course of three treatments and the aftercare",
       "You're in good general health",
     ],
     whenWeSayNo: [
       "You're pregnant or breastfeeding",
-      "You have an active skin infection or open wound in the area",
+      "You have an active breakout, cold sore or skin infection in the area. We'll wait until it has settled",
       "Your laxity would be better served by surgery. We'll tell you honestly and can suggest where to go",
-      "A medical condition or medication makes treatment unsafe. We check this at your consultation",
+      // Clinic's wording, 2026-11-12
+      "A contraindication or implanted device. We check this at your consultation",
     ],
   },
   clinicianId: 0,
   results: {
-    heading: "Real results from our clinic",
+    heading: "Morpheus8 results from our clinic",
     items: [
       // Real results from the clinic's GHL media ("Paula J Morpheus8 B&A" and
       // "Morpheus8"); consent confirmed by the agency for the clinic on 2026-11-06
@@ -188,13 +201,6 @@ export const skinLaxity = {
           src: "/assets/azira/result-jawline-2-after.jpg",
         },
       },
-      {
-        kind: "placeholder",
-        treatmentId: "skin-boosters",
-        sessions: "[2 sessions]",
-        timeBetweenPhotos: "[8 weeks]",
-        note: "Consented before/after: lower face. Across the three, show a range of skin tones",
-      },
     ],
   },
   steps: {
@@ -202,7 +208,7 @@ export const skinLaxity = {
     items: [
       {
         title: "We call you back",
-        body: "A nurse rings to understand what you've noticed and answer your first questions.",
+        body: "A team member rings to understand what you've noticed and answer your first questions.",
       },
       {
         title: "Your consultation",
@@ -222,19 +228,31 @@ export const skinLaxity = {
     heading: "Questions before you book",
     items: [
       {
-        question: "How much downtime will I need?",
+        question: "How many Morpheus8 sessions will I need?",
+        // draft: typical figure, confirm with clinic (the spacing; three treatments is from the clinic's video)
         answer:
-          "It depends on the treatment. After Morpheus8 most people have redness and swelling for two to three days. After skin boosters you may see small raised marks for a day or two. We'll plan your sessions around your diary.",
+          "We recommend three treatments for optimum results, usually about four to six weeks apart. Your nurse will confirm the right number for your skin at your consultation.",
       },
       {
-        question: "Does it hurt?",
+        question: "Does Morpheus8 hurt?",
         answer:
-          "We apply a numbing cream before treatment, so most people describe it as warm and prickly rather than painful. Your nurse checks in with you throughout and can pause at any time.",
+          "We apply numbing cream for an hour before we start, so you shouldn't feel too much. Your nurse checks in with you throughout and can pause at any time.",
       },
       {
-        question: "How much will it cost?",
+        question: "Is there downtime?",
+        // draft: typical figure, confirm with clinic
         answer:
-          "Morpheus8 starts from £[price] and skin boosters from £[price]. Your exact price depends on the area and the number of sessions you need, and you'll have it in writing before you decide anything. Your consultation is complimentary.",
+          "Most people have some redness for one to three days. We can finish with a Dermalux LED session to calm your skin, reduce the redness and enhance your results. We'll plan your sessions around your diary.",
+      },
+      {
+        question: "How much does Morpheus8 cost?",
+        answer:
+          "Morpheus8 starts from £350. Your exact price depends on the area and the number of sessions you need, and you'll have it in writing before you decide anything. Your consultation is complimentary.",
+      },
+      {
+        question: "When will I see results?",
+        answer:
+          "Morpheus8 works by stimulating your own collagen, so change is gradual. Optimal results are achieved up to 90 days after your third treatment. Results vary from person to person, and we'll be honest about what your skin can achieve.",
       },
       {
         question: "Will I look different?",
@@ -244,17 +262,18 @@ export const skinLaxity = {
       {
         question: "Is it right for my skin tone?",
         answer:
-          "Morpheus8 and skin boosters can be used on all skin tones. Darker skin can be more prone to pigmentation changes after some treatments, so we assess your skin carefully and adjust the settings for you.",
+          "Morpheus8 can be used on all skin tones. Darker skin can be more prone to pigmentation changes after some treatments, so we assess your skin carefully and adjust the settings for you.",
       },
       {
-        question: "When will I see results?",
+        question: "Who is Morpheus8 not suitable for?",
+        // Clinic's wording, 2026-11-12
         answer:
-          "Skin boosters improve hydration within a few weeks. Collagen-building treatments like Morpheus8 work gradually, with results developing over around three months. Results vary from person to person.",
+          "We won't treat you if you have a contraindication or an implanted device. We check this at your consultation.",
       },
     ],
   },
   closing: {
     headline: "Start with a conversation",
-    body: "Tell us what you've noticed. A nurse will call you back, and you'll know your options before you commit to anything.",
+    body: "Tell us what you've noticed. A team member will call you back, and you'll know your options before you commit to anything.",
   },
 } satisfies ConcernPageInput

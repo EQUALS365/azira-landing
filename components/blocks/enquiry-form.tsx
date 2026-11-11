@@ -304,8 +304,8 @@ export function EnquiryForm({ slug, concern, form, clinic }: EnquiryFormProps) {
             <p className="mt-4 max-w-[40ch] leading-relaxed">
               Your enquiry is with the clinic.{" "}
               {state.mobile
-                ? `A nurse will call you on ${formatMobile(state.mobile)}. `
-                : "A nurse will call you back. "}
+                ? `A team member will call you on ${formatMobile(state.mobile)}. `
+                : "A team member will call you back. "}
               {clinic.callbackPromise}
             </p>
             <p className="mt-6 border-t border-hairline pt-6 leading-relaxed">

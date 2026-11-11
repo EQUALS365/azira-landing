@@ -16,34 +16,34 @@ export const laserHairRemoval = {
   meta: {
     title: "Diode laser hair removal in Newport | Azira Aesthetics",
     description:
-      "Nurse-led laser hair removal in Newport. A cooled diode laser gives long-lasting hair reduction over six sessions, starting with a complimentary consultation.",
+      "Nurse-led laser hair removal in Newport. A cooled diode laser gives long-lasting hair reduction over up to six sessions, starting with a complimentary consultation.",
     index: true,
   },
   hero: {
     defaultHeadline: "Laser hair removal that lets you put the razor down",
     intro:
-      "Long-lasting hair reduction with a cooled, medical-grade diode laser, delivered by our award-winning nurses in Newport. We assess your skin and hair first.",
+      "Long-lasting hair reduction with a cooled, medical-grade diode laser, delivered by our award-winning nurses. We assess your skin and hair first.",
     // Ad group slugs are drafts until the ads team confirms them
     headlines: [
       {
         adGroup: "leg-laser-hair-removal",
         headline: "Laser hair removal for smoother legs, without shaving",
         intro:
-          "Long-lasting hair reduction on your legs with a cooled diode laser, delivered by our award-winning nurses in Newport.",
+          "Long-lasting hair reduction on your legs with a cooled diode laser, delivered by our award-winning nurses.",
         concernOption: "Legs",
       },
       {
         adGroup: "underarm-laser-hair-removal",
         headline: "Underarm laser hair removal, without the daily shave",
         intro:
-          "Long-lasting hair reduction on your underarms with a cooled diode laser, delivered by our award-winning nurses in Newport.",
+          "Long-lasting hair reduction on your underarms with a cooled diode laser, delivered by our award-winning nurses.",
         concernOption: "Underarms",
       },
       {
         adGroup: "bikini-laser-hair-removal",
         headline: "Bikini line laser hair removal, carried out by nurses",
         intro:
-          "Long-lasting hair reduction along your bikini line with a cooled diode laser, delivered discreetly by our award-winning nurses in Newport.",
+          "Long-lasting hair reduction along your bikini line with a cooled diode laser, delivered discreetly by our award-winning nurses.",
         concernOption: "Bikini line",
       },
     ],
@@ -57,7 +57,8 @@ export const laserHairRemoval = {
   },
   form: {
     title: "Tell us which areas you'd like treated",
-    intro: "A nurse will call you back to talk it through, with no obligation.",
+    intro:
+      "A team member will call you back to talk it through, with no obligation.",
     concernLabel: "Area to treat",
     concernOptions: [
       "Legs",
@@ -73,7 +74,7 @@ export const laserHairRemoval = {
     submitLabel: "Request consultation",
   },
   causes: {
-    heading: "Why laser hair removal takes six sessions",
+    heading: "Why laser hair removal takes up to six sessions",
     intro:
       "Every hair grows in a cycle, and each follicle keeps its own timing. The laser can only reach a hair while it's growing, so a course catches each one in turn.",
     items: [
@@ -90,7 +91,7 @@ export const laserHairRemoval = {
         body: "The follicle rests before a new hair starts to grow. Hairs at this stage aren't affected.",
       },
       {
-        title: "Six sessions",
+        title: "Up to six sessions",
         body: "Only some hairs are growing at any one time. Sessions about a month apart reach each follicle as it starts to grow.",
       },
     ],
@@ -130,13 +131,14 @@ export const laserHairRemoval = {
         },
         summary:
           "Laser hair removal with a medical-grade diode laser on the InMode Optimas Max. It targets the pigment in growing hairs for long-lasting hair reduction, and instant cooling keeps it comfortable.",
-        sessions: "6, one a month, or every 4–6 weeks",
+        sessions: "Up to 6, one a month, or every 4–6 weeks",
         // draft: typical figure, confirm with clinic
         downtime: "None for most. Mild redness for a few hours",
         // draft: typical figure, confirm with clinic
         results: "Treated hairs shed over 1–3 weeks and thin with each session",
         bestFor: "Darker hair on the legs, underarms, bikini line or face",
-        fromPrice: null,
+        // Clinic's price, 2026-11-12
+        fromPrice: 50,
         prescriptionOnly: false,
       },
     ],
@@ -144,15 +146,16 @@ export const laserHairRemoval = {
   suitability: {
     goodFit: [
       "You're tired of shaving, waxing or ingrowing hairs on one or more areas",
-      "Your hair is dark enough for the laser to target. We check this at your consultation",
-      "You can commit to a course of six sessions, about a month apart",
+      "Your hair is darker than your skin. We check this at your consultation",
+      "You can commit to a course of up to six sessions, about a month apart",
       "You can keep the area out of the sun and free of fake tan around your sessions",
     ],
     whenWeSayNo: [
       "You're pregnant or breastfeeding",
       "You have an active skin infection, cold sore or broken skin on the area",
       "Your hair is light blonde, grey, red or white. Lasers can't target it reliably, and we'll tell you honestly",
-      "A medical condition or medication, such as one that makes your skin sensitive to light, makes treatment unsafe. We check this at your consultation",
+      // Clinic's wording, 2026-11-12
+      "A contraindication or implanted device. We check this at your consultation",
     ],
   },
   clinicianId: 1,
@@ -187,7 +190,7 @@ export const laserHairRemoval = {
     items: [
       {
         title: "We call you back",
-        body: "A nurse rings to understand which areas you'd like treated and answer your first questions.",
+        body: "A team member rings to understand which areas you'd like treated and answer your first questions.",
       },
       {
         title: "Your consultation",
@@ -211,7 +214,7 @@ export const laserHairRemoval = {
         question: "How many laser hair removal sessions will I need?",
         // draft: occasional top-ups are typical, confirm with clinic
         answer:
-          "The protocol is six sessions. We recommend one a month for around six months, though sessions can be four to six weeks apart. The laser only reaches hairs in their growing phase, so a course catches each follicle in turn. Some people need an occasional top-up later. Results vary.",
+          "The protocol is up to six sessions. We recommend one a month for around six months, though sessions can be four to six weeks apart. The laser only reaches hairs in their growing phase, so a course catches each follicle in turn. Some people need an occasional top-up later. Results vary.",
       },
       {
         question: "Does laser hair removal hurt?",
@@ -219,9 +222,9 @@ export const laserHairRemoval = {
           "The Diolaze laser has instant cooling, so it's quite a comfortable treatment and not too painful. Most people feel a brief warmth with each pass. Your nurse checks in with you throughout and can pause at any time.",
       },
       {
-        question: "How much does laser hair removal cost in Newport?",
+        question: "How much does laser hair removal cost?",
         answer:
-          "Diolaze laser hair removal starts from £[price]. Your exact price depends on the areas and the number of sessions, and you'll have it in writing before you decide anything. Your consultation is complimentary.",
+          "Diolaze laser hair removal starts from £50. Your exact price depends on the areas and the number of sessions, and you'll have it in writing before you decide anything. Your consultation is complimentary.",
       },
       {
         question: "How do I prepare for laser hair removal?",
@@ -238,7 +241,7 @@ export const laserHairRemoval = {
       {
         question: "Who is laser hair removal not suitable for?",
         answer:
-          "The laser targets the pigment in the hair, so it works best on darker hair. Light blonde, grey, red and white hair respond poorly to lasers, and we'll tell you honestly if that's you. We don't treat during pregnancy or breastfeeding, or over broken or infected skin. Your nurse assesses your skin and hair type at your consultation, tailors the settings to you and does a patch test before your first session.",
+          "The laser targets the pigment in the hair, so it works best on darker hair. Light blonde, grey, red and white hair respond poorly to lasers, and we'll tell you honestly if that's you. We also won't treat you if you have a contraindication or an implanted device. Your nurse assesses your skin and hair type at your consultation, tailors the settings to you and does a patch test before your first session.",
       },
       {
         question: "How long do the results last?",
@@ -250,6 +253,6 @@ export const laserHairRemoval = {
   },
   closing: {
     headline: "Smoother skin starts with a conversation",
-    body: "Tell us which areas you'd like treated. A nurse will call you back, and you'll know your plan and price before you commit to anything.",
+    body: "Tell us which areas you'd like treated. A team member will call you back, and you'll know your plan and price before you commit to anything.",
   },
 } satisfies ConcernPageInput

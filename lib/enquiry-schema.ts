@@ -30,7 +30,7 @@ export function enquirySchema(options: EnquiryOptions) {
     mobile: z
       .string()
       .trim()
-      .min(1, "Enter your mobile number so a nurse can call you back.")
+      .min(1, "Enter your mobile number so a team member can call you back.")
       .transform((value, ctx) => {
         const mobile = normaliseMobile(value)
         if (!mobile) {

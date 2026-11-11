@@ -25,7 +25,7 @@ export default function Error({
       </h1>
       <p className="mt-4 max-w-[46ch] text-lg leading-relaxed">
         Please try again. If it still won&apos;t load, call the clinic on the
-        number above and a nurse will talk you through your options.
+        number above and a team member will talk you through your options.
       </p>
       <Button size="cta" onClick={() => retry()} className="mt-8 w-fit">
         <RotateCcwIcon aria-hidden className="stroke-[1.5]" />

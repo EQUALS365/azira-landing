@@ -1,6 +1,11 @@
 import { NextResponse, type NextRequest } from "next/server"
 
-import { getConcern, getVariant, type ConcernPage } from "@/content"
+import {
+  getConcern,
+  getConcernByAlias,
+  getVariant,
+  type ConcernPage,
+} from "@/content"
 import { site } from "@/content"
 import { isSiteHost, pageForHost, subdomainHost } from "@/lib/seo"
 import { isMetaTraffic, readAdGroup } from "@/lib/tracking"
@@ -39,7 +44,16 @@ export function proxy(request: NextRequest) {
   }
 
   const page = getConcern(pathname.slice(1))
-  if (!page) return NextResponse.next()
+  if (!page) {
+    // A retired address (a page merged into another) leads to its new home.
+    // Temporary (307) so the clinic can bring the old page back; the query
+    // string, and with it the ad tracking, is kept.
+    const merged = getConcernByAlias(pathname.slice(1))
+    if (!merged) return NextResponse.next()
+    const url = request.nextUrl.clone()
+    url.pathname = `/${merged.slug}`
+    return NextResponse.redirect(url, 307)
+  }
 
   // On a clinic subdomain, another treatment's path goes to its own subdomain
   const ownHost = subdomainHost(page)

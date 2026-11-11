@@ -24,6 +24,11 @@ export function getConcern(slug: string): ConcernPage | undefined {
   return site.concerns.find((page) => page.slug === slug)
 }
 
+/** The page a retired address now leads to (see `aliases` in the schema) */
+export function getConcernByAlias(alias: string): ConcernPage | undefined {
+  return site.concerns.find((page) => page.aliases.includes(alias))
+}
+
 export function concernSlugs() {
   return site.concerns.map((page) => page.slug)
 }
