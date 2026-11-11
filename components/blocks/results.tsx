@@ -13,6 +13,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import type { ImageAsset, ResultItem } from "@/content/schema"
+import { cn } from "@/lib/utils"
 
 type ResultsProps = {
   heading: string
@@ -91,25 +92,31 @@ function PhotoPair({
   item: Extract<ResultItem, { kind: "photo" }>
   label: string
 }) {
+  const stacked = item.layout === "stacked"
   return (
     <Dialog>
       <DialogTrigger
         render={
           <button
             type="button"
-            className="group relative grid w-full grid-cols-2 gap-px bg-hairline text-left"
+            className={cn(
+              "group relative grid w-full gap-px bg-hairline text-left",
+              !stacked && "grid-cols-2"
+            )}
           />
         }
       >
         <Half
           image={item.before}
           tag="Before"
-          sizes="(min-width: 768px) 15vw, 41vw"
+          stacked={stacked}
+          sizes={stacked ? STACKED_SIZES : "(min-width: 768px) 15vw, 41vw"}
         />
         <Half
           image={item.after}
           tag="After"
-          sizes="(min-width: 768px) 15vw, 41vw"
+          stacked={stacked}
+          sizes={stacked ? STACKED_SIZES : "(min-width: 768px) 15vw, 41vw"}
         />
         <span className="absolute right-2 bottom-2 flex size-9 items-center justify-center bg-background/90 text-foreground">
           <ExpandIcon aria-hidden className="size-4 stroke-[1.5]" />
@@ -125,26 +132,46 @@ function PhotoPair({
               `${item.timeBetweenPhotos} between photos`,
           ])}
         </DialogDescription>
-        <div className="grid grid-cols-2 gap-2">
-          <Half image={item.before} tag="Before" sizes="45vw" />
-          <Half image={item.after} tag="After" sizes="45vw" />
+        <div className={cn("grid gap-2", !stacked && "grid-cols-2")}>
+          <Half
+            image={item.before}
+            tag="Before"
+            stacked={stacked}
+            sizes={stacked ? "90vw" : "45vw"}
+          />
+          <Half
+            image={item.after}
+            tag="After"
+            stacked={stacked}
+            sizes={stacked ? "90vw" : "45vw"}
+          />
         </div>
       </DialogContent>
     </Dialog>
   )
 }
 
+const STACKED_SIZES = "(min-width: 768px) 30vw, 82vw"
+
 function Half({
   image,
   tag,
   sizes,
+  stacked = false,
 }: {
   image: ImageAsset
   tag: string
   sizes: string
+  /** Landscape photo, shown whole above or below its pair */
+  stacked?: boolean
 }) {
   return (
-    <span className="relative block aspect-[3/4] overflow-hidden bg-muted">
+    <span
+      className={cn(
+        "relative block overflow-hidden bg-muted",
+        stacked ? "aspect-[2/1]" : "aspect-[3/4]"
+      )}
+    >
       {image.src && (
         <Image
           src={image.src}

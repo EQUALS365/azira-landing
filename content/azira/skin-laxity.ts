@@ -199,6 +199,26 @@ export const skinLaxity = {
           src: "/assets/azira/result-jawline-2-after.jpg",
         },
       },
+      // From the clinic's shared folder ("Pictures / Morpheus8 - RF
+      // microneedling"); consent confirmed by the agency for the clinic on
+      // 2026-11-12
+      {
+        kind: "photo",
+        treatmentId: "morpheus8",
+        consentConfirmed: true,
+        before: {
+          id: "result-jawline-3-before",
+          alt: "Three-quarter view of a woman's lower face and jawline before Morpheus8",
+          note: "Morpheus8, lower face and jawline, before",
+          src: "/assets/azira/result-jawline-3-before.jpg",
+        },
+        after: {
+          id: "result-jawline-3-after",
+          alt: "The same view after Morpheus8, with a firmer lower face and jawline",
+          note: "Morpheus8, lower face and jawline, after",
+          src: "/assets/azira/result-jawline-3-after.jpg",
+        },
+      },
     ],
   },
   steps: {

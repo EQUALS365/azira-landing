@@ -221,6 +221,11 @@ export const resultItemSchema = z.discriminatedUnion("kind", [
     kind: z.literal("photo"),
     before: imageAssetSchema,
     after: imageAssetSchema,
+    /**
+     * "side" puts two portrait photos next to each other; "stacked" puts
+     * two landscape photos one above the other, so neither is cropped.
+     */
+    layout: z.enum(["side", "stacked"]).default("side"),
     consentConfirmed: z.literal(true),
   }),
 ])

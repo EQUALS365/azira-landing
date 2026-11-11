@@ -165,15 +165,62 @@ export const ipl = {
     // The clinic asked for these higher on the page (2026-11-12)
     placement: "early",
     items: [
+      // Real results from the clinic's shared folder ("Pictures / IPL -
+      // Lumecca"); consent confirmed by the agency for the clinic on
+      // 2026-11-12. Shown as the clinic framed them, before above after
       {
-        kind: "placeholder",
+        kind: "photo",
         treatmentId: "lumecca",
-        note: "Consented before/after: pigmentation or sun damage on the face",
+        layout: "stacked",
+        consentConfirmed: true,
+        before: {
+          id: "result-ipl-1-before",
+          alt: "A woman's cheek before Lumecca IPL, with patches of brown pigmentation",
+          note: "Lumecca IPL, pigmentation on the cheek, before",
+          src: "/assets/azira/result-ipl-1-before.jpg",
+        },
+        after: {
+          id: "result-ipl-1-after",
+          alt: "The same cheek after Lumecca IPL, with a more even skin tone",
+          note: "Lumecca IPL, pigmentation on the cheek, after",
+          src: "/assets/azira/result-ipl-1-after.jpg",
+        },
       },
       {
-        kind: "placeholder",
+        kind: "photo",
         treatmentId: "lumecca",
-        note: "Consented before/after: rosacea or broken capillaries",
+        layout: "stacked",
+        consentConfirmed: true,
+        before: {
+          id: "result-ipl-2-before",
+          alt: "A woman's cheek before Lumecca IPL, with redness across the cheek",
+          note: "Lumecca IPL, redness on the cheek, before",
+          src: "/assets/azira/result-ipl-2-before.jpg",
+        },
+        after: {
+          id: "result-ipl-2-after",
+          alt: "The same cheek after Lumecca IPL, with less redness",
+          note: "Lumecca IPL, redness on the cheek, after",
+          src: "/assets/azira/result-ipl-2-after.jpg",
+        },
+      },
+      {
+        kind: "photo",
+        treatmentId: "lumecca",
+        layout: "stacked",
+        consentConfirmed: true,
+        before: {
+          id: "result-ipl-3-before",
+          alt: "A woman's nose and cheeks before Lumecca IPL, with visible broken capillaries",
+          note: "Lumecca IPL, broken capillaries on the nose and cheeks, before",
+          src: "/assets/azira/result-ipl-3-before.jpg",
+        },
+        after: {
+          id: "result-ipl-3-after",
+          alt: "The same nose and cheeks after Lumecca IPL, with fewer visible capillaries",
+          note: "Lumecca IPL, broken capillaries on the nose and cheeks, after",
+          src: "/assets/azira/result-ipl-3-after.jpg",
+        },
       },
     ],
   },
