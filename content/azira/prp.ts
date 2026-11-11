@@ -28,7 +28,7 @@ export const prp = {
     headlines: [
       {
         adGroup: "prp-hair-treatment",
-        headline: "PRP hair treatment, led by nurses",
+        headline: "PRP hair treatment in Newport, led by nurses",
         intro:
           "We check what's behind your thinning first. If PRP suits you, it uses plasma from your own blood and usually takes around 10 to 15 minutes.",
         concernOption: "Thinning hair",
@@ -110,8 +110,9 @@ export const prp = {
       poster: {
         id: "poster-film-prp",
         src: "/assets/azira/poster-film-prp.jpg",
-        alt: "Aylish holding up a syringe of separated plasma beside the centrifuge",
-        note: "Still from the PRP film: Aylish holds up a syringe of separated plasma beside the centrifuge",
+        // The clinic asked for a better still of Aylish (2026-11-12)
+        alt: "Aylish, in black scrubs, smiling beside the centrifuge in the treatment room",
+        note: "Still from the PRP film: Aylish smiling to camera beside the centrifuge",
       },
       src: "/assets/azira/film-prp.mp4",
     },
@@ -149,9 +150,11 @@ export const prp = {
         image: {
           id: "treatment-prp-skin",
           src: "/assets/azira/treatment-prp-skin.jpg",
-          alt: "A microneedling handpiece on a patient's forehead, held in gloved hands",
-          note: "Clinic's own treatment shot: gloved hands guiding a microneedling handpiece across the forehead",
-          caption: "PRP microneedling · Treatment room",
+          // Replaces a shot of the Morpheus8 machine, at the clinic's request
+          // (2026-11-12)
+          alt: "A blue-gloved hand holding up a syringe of separated golden plasma",
+          note: "Clinic's own shot from the PRP film: the separated plasma held up in a gloved hand",
+          caption: "Separated plasma · Treatment room",
         },
         summary:
           "Plasma from your own blood, microneedled into the skin or injected under the eye, on the face or neck, to help support skin quality.",

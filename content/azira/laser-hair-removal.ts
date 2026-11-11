@@ -22,28 +22,28 @@ export const laserHairRemoval = {
   hero: {
     defaultHeadline: "Laser hair removal that lets you put the razor down",
     intro:
-      "Long-lasting hair reduction with a cooled, medical-grade diode laser, delivered by our award-winning nurses. We assess your skin and hair first.",
+      "Long-lasting hair reduction with a cooled, medical-grade diode laser, delivered by our award-winning nurses in Newport. We assess your skin and hair first.",
     // Ad group slugs are drafts until the ads team confirms them
     headlines: [
       {
         adGroup: "leg-laser-hair-removal",
         headline: "Laser hair removal for smoother legs, without shaving",
         intro:
-          "Long-lasting hair reduction on your legs with a cooled diode laser, delivered by our award-winning nurses.",
+          "Long-lasting hair reduction on your legs with a cooled diode laser, delivered by our award-winning nurses in Newport.",
         concernOption: "Legs",
       },
       {
         adGroup: "underarm-laser-hair-removal",
         headline: "Underarm laser hair removal, without the daily shave",
         intro:
-          "Long-lasting hair reduction on your underarms with a cooled diode laser, delivered by our award-winning nurses.",
+          "Long-lasting hair reduction on your underarms with a cooled diode laser, delivered by our award-winning nurses in Newport.",
         concernOption: "Underarms",
       },
       {
         adGroup: "bikini-laser-hair-removal",
         headline: "Bikini line laser hair removal, carried out by nurses",
         intro:
-          "Long-lasting hair reduction along your bikini line with a cooled diode laser, delivered discreetly by our award-winning nurses.",
+          "Long-lasting hair reduction along your bikini line with a cooled diode laser, delivered discreetly by our award-winning nurses in Newport.",
         concernOption: "Bikini line",
       },
     ],

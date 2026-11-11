@@ -20,7 +20,8 @@ export const clinic = {
     { label: "Nurse-led clinic" },
   ],
   consultationFee: "Your consultation is complimentary.",
-  callbackPromise: "[We call back within one working day]",
+  // Confirmed by the clinic, 2026-11-12
+  callbackPromise: "We call back within one working day.",
   awards: [
     "Winner, Best Clinic in Wales 2025",
     "Highly Commended, Best Clinic in Wales 2024",
@@ -54,7 +55,7 @@ export const clinic = {
     {
       name: "Grace",
       qualifications:
-        "Registered Nurse and Independent Nurse Prescriber. Founding Director of The Aesthetics Network and Key Opinion Leader for Croma Pharma. Owner of Azira Aesthetics and Azira Aesthetics Academy.",
+        "Registered Nurse and Independent Nurse Prescriber. Owner of Azira Aesthetics and Azira Aesthetics Academy. Founding Director of The Aesthetics Network and Key Opinion Leader for Croma Pharma.",
       portrait: {
         id: "portrait-grace",
         alt: "Grace, owner and Clinical Director, in the Azira Aesthetics clinic",

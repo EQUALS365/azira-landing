@@ -127,7 +127,7 @@ Save files to `public/assets/azira/` with these names (JPG or WebP, at least 200
 | File | What it shows |
 | --- | --- |
 | `logo.svg` (or a high-res transparent PNG) | Azira Aesthetics logo |
-| `hero-still.jpg` | Gloved hands at work at the jawline, tight crop. Sits behind the hero; keep the hands right of centre |
+| `hero-skin-laxity.jpg` | Grace holding the Morpheus8 handpiece over her patient. Sits behind the hero; keep the hands right of centre |
 | `treatment-morpheus8.jpg` | Gloved hand with the Morpheus8 handpiece, dark background |
 | `treatment-skin-boosters.jpg` | Gloved hand with a skin booster syringe, dark background |
 | `clinician-portrait.jpg` | The lead nurse in clinic, natural light, portrait 4:5 |
