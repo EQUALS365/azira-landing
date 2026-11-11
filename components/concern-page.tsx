@@ -40,6 +40,11 @@ export function ConcernPage({ page, adGroup, audience }: ConcernPageProps) {
     results.length > 0 &&
     !(page.hideResultsForMeta && audience === "meta")
 
+  const resultsBlock = showResults && (
+    <Results heading={page.results.heading} items={results} />
+  )
+  const resultsEarly = page.results.placement === "early"
+
   const clinician = clinic.clinicians[page.clinicianId]
   const jsonLd = jsonLdScript(pageJsonLd(page, clinician))
 
@@ -79,11 +84,10 @@ export function ConcernPage({ page, adGroup, audience }: ConcernPageProps) {
         <TrustStrip awards={clinic.awards} logos={clinic.trustLogos} />
         <CauseCards causes={page.causes} />
         <TreatmentOptions treatments={page.treatments} />
+        {resultsEarly && resultsBlock}
         <WhoItSuits suitability={page.suitability} />
         {clinician && <Clinician clinician={clinician} />}
-        {showResults && (
-          <Results heading={page.results.heading} items={results} />
-        )}
+        {!resultsEarly && resultsBlock}
         <NextSteps steps={page.steps} />
         <Faqs faqs={page.faqs} />
         <ClosingAsk clinic={clinic} closing={page.closing} />

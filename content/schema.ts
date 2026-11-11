@@ -302,7 +302,15 @@ export const concernPageSchema = z
       whenWeSayNo: z.array(text).min(1),
     }),
     clinicianId: z.number().int().nonnegative(),
-    results: z.object({ heading: text, items: z.array(resultItemSchema) }),
+    results: z.object({
+      heading: text,
+      /**
+       * "early" moves the before/afters up to follow the treatments, for a
+       * page whose results are its strongest proof
+       */
+      placement: z.enum(["default", "early"]).default("default"),
+      items: z.array(resultItemSchema),
+    }),
     steps: z.object({ heading: text, items: z.array(pair).length(4) }),
     faqs: z.object({
       heading: text,

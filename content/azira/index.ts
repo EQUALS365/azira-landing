@@ -1,5 +1,6 @@
 import { brand } from "./brand"
 import { clinic } from "./clinic"
+import { ipl } from "./ipl"
 import { laserHairRemoval } from "./laser-hair-removal"
 import { prp } from "./prp"
 import { skinLaxity } from "./skin-laxity"
@@ -8,5 +9,5 @@ import { skinLaxity } from "./skin-laxity"
 export const azira = {
   brand,
   clinic,
-  concerns: [skinLaxity, prp, laserHairRemoval],
+  concerns: [skinLaxity, ipl, prp, laserHairRemoval],
 }
