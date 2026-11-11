@@ -165,22 +165,16 @@ export const laserHairRemoval = {
       {
         kind: "placeholder",
         treatmentId: "diolaze",
-        sessions: "[6 sessions]",
-        timeBetweenPhotos: "[6 months]",
         note: "Consented before/after: lower legs. Across the three, show a range of skin tones",
       },
       {
         kind: "placeholder",
         treatmentId: "diolaze",
-        sessions: "[6 sessions]",
-        timeBetweenPhotos: "[6 months]",
         note: "Consented before/after: underarms. Across the three, show a range of skin tones",
       },
       {
         kind: "placeholder",
         treatmentId: "diolaze",
-        sessions: "[6 sessions]",
-        timeBetweenPhotos: "[6 months]",
         note: "Consented before/after: face (upper lip or chin). Across the three, show a range of skin tones",
       },
     ],

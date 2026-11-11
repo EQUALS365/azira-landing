@@ -64,8 +64,11 @@ export function Results({ heading, items }: ResultsProps) {
                   />
                 )}
                 <WallLabel className="text-copy">
-                  {item.treatmentName} · {item.sessions} ·{" "}
-                  {item.timeBetweenPhotos} apart · Results vary
+                  {caption([
+                    item.treatmentName,
+                    item.sessions,
+                    item.timeBetweenPhotos && `${item.timeBetweenPhotos} apart`,
+                  ])}
                 </WallLabel>
               </figure>
             </li>
@@ -74,6 +77,11 @@ export function Results({ heading, items }: ResultsProps) {
       </FadeUp>
     </section>
   )
+}
+
+/** The details the clinic gave, then the line every result must carry */
+function caption(details: (string | undefined)[]) {
+  return [...details.filter(Boolean), "Results vary"].join(" · ")
 }
 
 function PhotoPair({
@@ -111,8 +119,11 @@ function PhotoPair({
       <DialogContent className="max-w-[calc(100%-2rem)] sm:max-w-4xl">
         <DialogTitle className="text-xl">{label}: before and after</DialogTitle>
         <DialogDescription className="text-copy">
-          {item.sessions} · {item.timeBetweenPhotos} between photos · Results
-          vary
+          {caption([
+            item.sessions,
+            item.timeBetweenPhotos &&
+              `${item.timeBetweenPhotos} between photos`,
+          ])}
         </DialogDescription>
         <div className="grid grid-cols-2 gap-2">
           <Half image={item.before} tag="Before" sizes="45vw" />

@@ -8,6 +8,8 @@ import type { ConcernPageInput } from "../schema"
 // From the clinic's InMode film (docs/azira-video-facts.md): Lumecca is an IPL
 // device on the Optimas Max that treats vascular lesions, rosacea, sun damage
 // and pigmentation, and needs fewer sessions than traditional IPL.
+// The clinic confirmed on 2026-11-12: no downtime, one month between sessions
+// and results are best after three sessions.
 // Fields marked "draft" are typical figures to confirm with the clinic. The
 // images are stills from that film until the clinic sends Lumecca photos.
 export const ipl = {
@@ -129,14 +131,10 @@ export const ipl = {
         },
         summary:
           "Intense pulsed light on our InMode Optimas Max. It targets pigment and visible blood vessels to even out tone, and needs fewer sessions than traditional IPL.",
-        // Clinic's figure, 2026-11-12; draft: the spacing, confirm with clinic
-        sessions: "Up to 3, about 4 weeks apart",
-        // draft: typical figure, confirm with clinic
-        downtime:
-          "Redness for a day or so. Pigment can darken, then flake away within a week",
-        // draft: typical figure, confirm with clinic
-        results:
-          "Often visible from the first session, building over the course",
+        // Clinic's figures, 2026-11-12
+        sessions: "Up to 3, one month apart",
+        downtime: "None",
+        results: "Best after 3 sessions",
         bestFor: "Pigmentation, rosacea and vascular lesions",
         // Clinic's price, 2026-11-12
         fromPrice: 70,
@@ -170,15 +168,11 @@ export const ipl = {
       {
         kind: "placeholder",
         treatmentId: "lumecca",
-        sessions: "[3 sessions]",
-        timeBetweenPhotos: "[12 weeks]",
         note: "Consented before/after: pigmentation or sun damage on the face",
       },
       {
         kind: "placeholder",
         treatmentId: "lumecca",
-        sessions: "[3 sessions]",
-        timeBetweenPhotos: "[12 weeks]",
         note: "Consented before/after: rosacea or broken capillaries",
       },
     ],
@@ -209,9 +203,8 @@ export const ipl = {
     items: [
       {
         question: "How many Lumecca IPL sessions will I need?",
-        // draft: the spacing is a typical figure, confirm with clinic
         answer:
-          "You need up to three sessions, usually about four weeks apart. Lumecca needs fewer sessions than traditional IPL. Your nurse will confirm the right number for your skin at your consultation.",
+          "You need up to three sessions, one month apart. Lumecca needs fewer sessions than traditional IPL. Your nurse will confirm the right number for your skin at your consultation.",
       },
       {
         question: "How much does Lumecca IPL cost?",
@@ -226,15 +219,13 @@ export const ipl = {
       },
       {
         question: "Is there downtime?",
-        // draft: typical figure, confirm with clinic
         answer:
-          "Most people go back to their day. Your skin may look red and feel warm for a day or so. Pigmented spots often darken first, then flake away within about a week. Your nurse will give you aftercare to follow, including sun protection.",
+          "No. There's no downtime, so you can go straight back to your day. Your nurse will give you aftercare to follow.",
       },
       {
         question: "When will I see results?",
-        // draft: typical figure, confirm with clinic
         answer:
-          "Many people notice a change after the first session, and it builds over the course. Results vary from person to person, and we'll be honest about what your skin can achieve.",
+          "Results are best after three sessions. Results vary from person to person, and we'll be honest about what your skin can achieve.",
       },
       {
         question: "Who is Lumecca IPL not suitable for?",

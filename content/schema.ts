@@ -208,8 +208,9 @@ export const treatmentSchema = z.object({
 
 const resultBase = {
   treatmentId: text,
-  sessions: text,
-  timeBetweenPhotos: text,
+  /** Optional caption details: leave out what the clinic can't confirm */
+  sessions: text.optional(),
+  timeBetweenPhotos: text.optional(),
 }
 
 /** A real photo must carry consentConfirmed: true or the content won't parse */

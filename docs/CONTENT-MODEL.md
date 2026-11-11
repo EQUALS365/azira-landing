@@ -113,7 +113,7 @@ Shown only when `showResults` is on. Up to 3 items.
 | `after`               | image     | Unretouched.                                                          |
 | `treatment`           | reference | The treatment shown. Must not be `prescriptionOnly`.                  |
 | `sessions`            | text      | Caption.                                                              |
-| `timeBetweenPhotos`   | text      | Caption.                                                              |
+| `timeBetweenPhotos`   | text?     | Caption.                                                              |
 | `consentConfirmed`    | boolean   | Must be true for the item to appear.                                  |
 
 Every caption ends with "Results vary".

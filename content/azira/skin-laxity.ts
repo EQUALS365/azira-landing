@@ -5,7 +5,7 @@ import type { ConcernPageInput } from "../schema"
 // into this one (their old addresses redirect here, see `aliases`), and
 // supplied the price, the results timing and the wording for contraindications
 // ("Updates to landing pages" document). The clinic then confirmed the page
-// covers Morpheus8 and skin boosters only, so Forma is not on it.
+// is Morpheus8 only: no skin boosters, no Forma.
 // From the clinic's own videos (docs/azira-video-facts.md): radiofrequency and
 // microneedling in the same treatment, different depths to stimulate the
 // collagen layers, lower face contouring, the jowls and sagging skin, an hour
@@ -98,9 +98,9 @@ export const skinLaxity = {
     ],
   },
   treatments: {
-    heading: "Morpheus8 and skin boosters at Azira",
+    heading: "Morpheus8 at Azira",
     intro:
-      "Watch Grace perform a Morpheus8 treatment, through to the LED aftercare. Your plan may use Morpheus8, skin boosters or both. Every treatment here is delivered by medical professionals, and you'll see your exact price before you decide.",
+      "Watch Grace perform a Morpheus8 treatment, through to the LED aftercare. Every treatment here is delivered by medical professionals, and you'll see your exact price before you decide.",
     film: {
       id: "film-morpheus8",
       title: "Morpheus8 at Azira Aesthetics",
@@ -142,30 +142,6 @@ export const skinLaxity = {
         fromPrice: 350,
         prescriptionOnly: false,
       },
-      // Kept at the clinic's request (2026-11-12). The price and a photo are
-      // still to come; the figures are drafts to confirm with the clinic
-      {
-        id: "skin-boosters",
-        name: "Skin boosters",
-        kind: "Injectable hydration",
-        image: {
-          id: "treatment-skin-boosters",
-          alt: "A gloved hand holding a skin booster syringe",
-          note: "Gloved hand with a skin booster syringe, dark background",
-          caption: "Skin booster · Treatment room",
-        },
-        summary:
-          "Injectable hyaluronic acid that hydrates from within and improves the skin's firmness and quality.",
-        // draft: typical figure, confirm with clinic
-        sessions: "Usually 2, about 4 weeks apart",
-        // draft: typical figure, confirm with clinic
-        downtime: "Small raised marks for 24 to 48 hours",
-        // draft: typical figure, confirm with clinic
-        results: "Skin looks more hydrated within weeks",
-        bestFor: "Crepey, dehydrated or thinning skin on the face and neck",
-        fromPrice: null,
-        prescriptionOnly: false,
-      },
     ],
   },
   suitability: {
@@ -192,8 +168,6 @@ export const skinLaxity = {
       {
         kind: "photo",
         treatmentId: "morpheus8",
-        sessions: "[3 sessions]",
-        timeBetweenPhotos: "[12 weeks]",
         consentConfirmed: true,
         before: {
           id: "result-jawline-1-before",
@@ -211,8 +185,6 @@ export const skinLaxity = {
       {
         kind: "photo",
         treatmentId: "morpheus8",
-        sessions: "[3 sessions]",
-        timeBetweenPhotos: "[12 weeks]",
         consentConfirmed: true,
         before: {
           id: "result-jawline-2-before",
@@ -268,12 +240,12 @@ export const skinLaxity = {
         question: "Is there downtime?",
         // draft: typical figure, confirm with clinic
         answer:
-          "Most people have some redness for one to three days. We can finish with a Dermalux LED session to calm your skin, reduce the redness and enhance your results. After skin boosters you may see small raised marks for a day or two. We'll plan your sessions around your diary.",
+          "Most people have some redness for one to three days. We can finish with a Dermalux LED session to calm your skin, reduce the redness and enhance your results. We'll plan your sessions around your diary.",
       },
       {
-        question: "How much will it cost?",
+        question: "How much does Morpheus8 cost?",
         answer:
-          "Morpheus8 starts from £350 and skin boosters from £[price]. Your exact price depends on the area and the number of sessions you need, and you'll have it in writing before you decide anything. Your consultation is complimentary.",
+          "Morpheus8 starts from £350. Your exact price depends on the area and the number of sessions you need, and you'll have it in writing before you decide anything. Your consultation is complimentary.",
       },
       {
         question: "When will I see results?",

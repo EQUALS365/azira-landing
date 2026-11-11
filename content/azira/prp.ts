@@ -198,8 +198,6 @@ export const prp = {
       {
         kind: "photo",
         treatmentId: "prp-hair",
-        sessions: "[4 sessions]",
-        timeBetweenPhotos: "[6 months]",
         consentConfirmed: true,
         before: {
           id: "result-prp-hair-1-before",
