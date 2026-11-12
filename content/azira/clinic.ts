@@ -26,28 +26,15 @@ export const clinic = {
     "Winner, Best Clinic in Wales 2025",
     "Highly Commended, Best Clinic in Wales 2024",
   ],
+  // The clinic's one awards body (2026-11-12). Its logo, traced to SVG from
+  // the file the clinic sent. The 2024 and press placeholders came out: add
+  // more entries here if the clinic sends other logos
   trustLogos: [
     {
-      id: "trust-award-2025",
-      // The clinic named the awards body on 2026-11-12; the logo file is
-      // still to come
+      id: "trust-safety-in-beauty",
       alt: "Safety in Beauty Awards",
       note: "Safety in Beauty Awards logo",
-    },
-    {
-      id: "trust-award-2024",
-      alt: "[Awards body] 2024",
-      note: "Award logo: Highly Commended 2024",
-    },
-    {
-      id: "trust-press-1",
-      alt: "[Publication]",
-      note: "Press or review platform logo",
-    },
-    {
-      id: "trust-press-2",
-      alt: "[Publication]",
-      note: "Press or review platform logo",
+      src: "/assets/azira/trust-safety-in-beauty.svg",
     },
   ],
   // 0: Grace, 1: Aylish. Quotes are their own words from their intro videos.

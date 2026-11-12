@@ -132,7 +132,7 @@ Save files to `public/assets/azira/` with these names (JPG or WebP, at least 200
 | `treatment-skin-boosters.jpg` | Gloved hand with a skin booster syringe, dark background |
 | `clinician-portrait.jpg` | The lead nurse in clinic, natural light, portrait 4:5 |
 | `result-1.jpg` to `result-3.jpg` (before and after each) | Consented before/after pairs |
-| `trust-award-2025.png`, `trust-award-2024.png`, press logos | Award and press logos |
+| `trust-safety-in-beauty.svg` (done), any further award or press logos | Award and press logos. One logo sits beside the awards list; two or more share a row |
 
 **TODO**: photos for any other concerns.
 
