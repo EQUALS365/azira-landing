@@ -123,7 +123,8 @@ export const clinic = {
     "Your enquiry also records which advert and page brought you here, so we can tell which adverts help people find us. It doesn't identify you on other websites.",
     "While you fill in the form, your answers are kept in this browser tab so they survive a reload. They are cleared when you send the form or close the tab.",
     "With your permission, we use cookies (the Meta Pixel) to see which adverts bring people to this page. They stay off unless you accept, and you can change your choice at any time with Cookie settings at the foot of the page.",
-    "We keep enquiry details for [retention period] and then delete them. You can ask us to delete them sooner by calling the clinic.",
-    "[Link or summary of the clinic's full privacy policy, to be supplied]",
+    // The clinic has no published privacy policy or set retention period
+    // (2026-11-12). Add a link and the period here when it has them
+    "You can ask us to delete your enquiry details at any time by calling the clinic.",
   ],
 } satisfies ClinicInput

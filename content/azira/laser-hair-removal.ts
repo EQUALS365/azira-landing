@@ -11,7 +11,9 @@ import type { ConcernPageInput } from "../schema"
 export const laserHairRemoval = {
   slug: "laser-hair-removal",
   concern: "Laser hair removal",
-  showResults: true,
+  // Off at the clinic's request (2026-11-12) until its Diolaze before and
+  // afters arrive; turn back on when the placeholders below are filled
+  showResults: false,
   hideResultsForMeta: false,
   meta: {
     title: "Diode laser hair removal in Newport | Azira Aesthetics",

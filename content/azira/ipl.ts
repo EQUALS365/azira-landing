@@ -9,8 +9,8 @@ import type { ConcernPageInput } from "../schema"
 // device on the Optimas Max that treats vascular lesions, rosacea, sun damage
 // and pigmentation, and needs fewer sessions than traditional IPL.
 // The clinic confirmed on 2026-11-12: no downtime, one month between sessions
-// and results are best after three sessions.
-// Fields marked "draft" are typical figures to confirm with the clinic. The
+// and results are best after three sessions. It also approved the wording on
+// how the treatment feels and on sun and fake tan. The
 // images are stills from that film until the clinic sends Lumecca photos.
 export const ipl = {
   slug: "ipl",
@@ -147,12 +147,10 @@ export const ipl = {
       "You have pigmentation, age spots or sun damage you'd like to fade",
       "You have rosacea, redness or broken capillaries",
       "You can commit to a course of up to three sessions and the aftercare",
-      // draft: typical requirement, confirm with clinic
       "You can keep the area out of the sun and free of fake tan around your sessions",
     ],
     whenWeSayNo: [
       "You're pregnant or breastfeeding",
-      // draft: typical requirement, confirm with clinic
       "The area is tanned, or has fake tan on it. We'll wait until it has faded",
       "Another treatment would suit your skin better. We'll tell you honestly and explain why",
       // Clinic's wording, 2026-11-12
@@ -260,7 +258,6 @@ export const ipl = {
       },
       {
         question: "Does Lumecca IPL hurt?",
-        // draft: typical description, confirm with clinic
         answer:
           "Most people describe each pulse as a quick, warm snap, like an elastic band against the skin. Your nurse checks in with you throughout and can pause at any time.",
       },
