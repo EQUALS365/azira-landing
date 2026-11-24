@@ -60,7 +60,7 @@ To test without emailing anyone real, set `LEAD_EMAIL_TO=delivered@resend.dev`.
 
 1. **Contact upserted.** It is matched on phone or email by the sub-account's duplicate rules, with the phone sent as +44 and the source set to "Ads landing page: <treatment>".
 2. **Tags added:** `ads`, the treatment (e.g. `morpheus8`) and `source-google` or `source-meta`. Tags are added, so a returning contact keeps the tags they already had.
-3. **Opportunity opened** in the ads pipeline at its first stage (or the stage set), unless the contact already has an open one there.
+3. **Opportunity opened** in the ads pipeline at its first stage (or the stage set), with its value set to the page's lowest "from" price (e.g. £350 for Morpheus8, so the pipeline shows the potential value of all leads), unless the contact already has an open one there.
 4. **Note added** with every answer and the full tracking: ad group, page, landing page, UTMs, GCLID, fbclid and lead ID.
 
 Setup:

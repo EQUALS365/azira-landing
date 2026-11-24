@@ -10,6 +10,7 @@ const LABELS: Record<string, string> = {
   treated_before: "Treated before?",
   start_when: "When to start",
   concern_page: "Page",
+  from_price: "From price (£)",
   ad_group: "Ad group",
   landing_page: "Landing page",
   gclid: "GCLID",

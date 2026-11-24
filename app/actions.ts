@@ -39,6 +39,11 @@ export async function submitEnquiry(
     }
   }
 
+  // The lowest "from" price on the page, so the CRM can value the lead
+  const prices = page.treatments.items.flatMap((t) =>
+    t.fromPrice === null ? [] : [t.fromPrice]
+  )
+
   const leadId = crypto.randomUUID()
   const { ok } = await deliverLead({
     ...parsed.data,
@@ -47,6 +52,7 @@ export async function submitEnquiry(
     receivedAt: new Date().toISOString(),
     clinic: site.clinic.name,
     concernPage: page.concern,
+    fromPrice: prices.length ? Math.min(...prices) : undefined,
   })
 
   if (!ok) {

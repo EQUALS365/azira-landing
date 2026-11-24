@@ -156,6 +156,7 @@ const tag = (value: string) =>
 function noteBody(flat: FlatLead) {
   const rows: [string, string][] = [
     ["Treatment page", flat.concern_page],
+    ["From price", flat.from_price && `£${flat.from_price}`],
     ["Answer", flat.concern],
     ["Treated before", flat.treated_before],
     ["Wants to start", flat.start_when],
@@ -184,8 +185,9 @@ function noteBody(flat: FlatLead) {
  *    with tracking in any custom fields mapped in GHL_CONTACT_FIELDS;
  * 2. adds tags (upsert would replace existing ones): ads, the treatment and
  *    the ad platform;
- * 3. opens an opportunity in the ads pipeline, unless the contact already has
- *    an open one there (a repeat enquiry);
+ * 3. opens an opportunity in the ads pipeline, valued at the page's lowest
+ *    "from" price, unless the contact already has an open one there (a repeat
+ *    enquiry);
  * 4. adds a note with every answer and the full tracking.
  */
 export async function sendLeadToGhl(lead: Lead) {
@@ -249,6 +251,7 @@ export async function sendLeadToGhl(lead: Lead) {
       contactId: contact.id,
       name: `${flat.name} · ${flat.concern_page} · ${source}`,
       status: "open",
+      monetaryValue: lead.fromPrice,
     })
   }
 

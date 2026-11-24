@@ -8,6 +8,8 @@ export type Lead = ValidEnquiry & {
   clinic: string
   /** The concern page it came from, e.g. "Skin laxity" */
   concernPage: string
+  /** The page's lowest "from" price in pounds, used as the lead's value */
+  fromPrice?: number
   page: string
   adGroup?: string
   tracking: Tracking
@@ -37,6 +39,7 @@ export function flattenLead(lead: Lead) {
     received_at: lead.receivedAt,
     clinic: lead.clinic,
     concern_page: lead.concernPage,
+    from_price: lead.fromPrice?.toString() ?? "",
     name: lead.name,
     mobile: lead.mobile,
     email: lead.email,
